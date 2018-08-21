@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     LoginIn w;
     Widget wi;
-    QObject::connect(&w,SIGNAL(firstpageshow()),&wi,SLOT(receivesignal()));
+    QObject::connect(&w,SIGNAL(firstpageshow(QString)),&wi,SLOT(receivesignal(QString)));
     w.show();
 
     return a.exec();

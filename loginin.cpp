@@ -106,9 +106,8 @@ void LoginIn::on_Login_Btn_clicked()
         {
             ui->label_3->setText("");
             //用户名和密码均正确
-            Widget w;
             this->hide();
-            emit firstpageshow();
+            emit firstpageshow(usr_name);
         }
     }
 }

@@ -25,9 +25,9 @@ private slots:
     void getUserInfo(QString name);
 
 signals:
-    void firstpageshow(); //转到第一个界面
+    void firstpageshow(QString); //转到第一个界面
 
-    void transmitdb(QSqlDatabase db);
+    void transmitdb(QSqlDatabase);
 
 private:
     Ui::LoginIn *ui;

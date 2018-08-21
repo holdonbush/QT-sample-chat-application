@@ -16,7 +16,7 @@ public:
     ~Widget();
 
 private slots:
-    void receivesignal();
+    void receivesignal(QString name);
 
 private:
     Ui::Widget *ui;

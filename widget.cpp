@@ -13,7 +13,8 @@ Widget::~Widget()
     delete ui;
 }
 
-void Widget::receivesignal()
+void Widget::receivesignal(QString name)
 {
     this->show();
+    this->setWindowTitle(name);
 }
