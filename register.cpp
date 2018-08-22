@@ -8,6 +8,8 @@ Register::Register(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("注册");
+    ui->PWD_LineEdit->setEchoMode(QLineEdit::Password);
+    ui->PWDConf_LineEdit->setEchoMode(QLineEdit::Password);
 
     connect((LoginIn* )parent,SIGNAL(transmitdb(QSqlDatabase)),this,SLOT(receivedb(QSqlDatabase)));
 

@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
+#include <QLineEdit>
 
 LoginIn::LoginIn(QWidget *parent) :
     QDialog(parent),
@@ -12,6 +13,7 @@ LoginIn::LoginIn(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("登陆");
+    ui->PWD_LineEdit->setEchoMode(QLineEdit::Password);
 
     connect(ui->UserName_LineEdit,SIGNAL(textChanged(QString)),this,SLOT(getUserInfo(QString)));
     tableFlag = false;
