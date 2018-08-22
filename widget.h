@@ -43,6 +43,7 @@ private:
     QUdpSocket *udpSocket;
     qint16 port;
     QString uName;
+    QString uName_1;
 };
 
 #endif // WIDGET_H

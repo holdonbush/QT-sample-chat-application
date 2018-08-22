@@ -1,5 +1,6 @@
 #include "drawer.h"
 #include "userinfo.h"
+#include "tcpclient.h"
 #include <QGroupBox>
 #include <QVBoxLayout>
 
@@ -60,8 +61,19 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     toolBtn6->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     connect(toolBtn6,SIGNAL(clicked(bool)),this,SLOT(showChatWidget6()));
 
+    toolBtn7 = new QToolButton;
+    toolBtn7->setText("7");
+    toolBtn7->setIcon(QPixmap(":/img/cat.png"));
+    toolBtn7->setIconSize(QPixmap(":/img/cat.png").size());
+    toolBtn7->setAutoRaise(true);
+    toolBtn7->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    //connect(toolBtn5,SIGNAL(clicked(bool)),this,SLOT(showChatWidget5()));
+
     QGroupBox *groupBox = new QGroupBox;
     QVBoxLayout *Layout = new QVBoxLayout(groupBox);
+
+    QGroupBox *groupBox_1 = new QGroupBox;
+    QVBoxLayout *Layout_1 = new QVBoxLayout(groupBox_1);
 
     Layout->setMargin(20);
     Layout->setAlignment(Qt::AlignLeft);
@@ -71,12 +83,17 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     Layout->addWidget(toolBtn4);
     Layout->addWidget(toolBtn5);
     Layout->addWidget(toolBtn6);
-    Layout->addStretch(40);
-    Layout->addWidget(user_Info_btn);
-
     Layout->addStretch();
+
+    Layout_1->setMargin(20);
+    Layout_1->setAlignment(Qt::AlignLeft|Qt::AlignTop);
+    Layout_1->addWidget(toolBtn7);
+
     this->addItem((QWidget*)groupBox,tr("群成员"));
+    this->addItem((QWidget*)groupBox_1,tr("群"));
+    this->addItem((QPushButton*)user_Info_btn,tr("个人信息"));
     connect(user_Info_btn,SIGNAL(clicked(bool)),this,SLOT(userInfoPage()));
+    connect(toolBtn7,SIGNAL(clicked(bool)),this,SLOT(groupPage()));
 }
 
 void Drawer::receivesignal(QString name)
@@ -139,4 +156,10 @@ void Drawer::userInfoPage()
     this->hide();
     u.exec();
     this->show();
+}
+
+void Drawer::groupPage()
+{
+    TcpClient t(this);
+    t.exec();
 }

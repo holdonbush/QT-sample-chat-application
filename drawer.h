@@ -14,6 +14,7 @@ public:
 private slots:
     void receivesignal(QString name);
     void userInfoPage();
+    void groupPage();
     void showChatWidget1();
     void showChatWidget2();
     void showChatWidget3();
@@ -36,6 +37,9 @@ private:
     Widget *chatWidget4;
     Widget *chatWidget5;
     Widget *chatWidget6;
+
+    //
+    QToolButton *toolBtn7;
 };
 
 #endif // DRAWER_H
