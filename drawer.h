@@ -2,6 +2,7 @@
 #define DRAWER_H
 #include <QToolBox>
 #include <QToolButton>
+#include <QPushButton>
 #include "widget.h"
 
 class Drawer : public QToolBox
@@ -12,7 +13,7 @@ public:
 
 private slots:
     void receivesignal(QString name);
-
+    void userInfoPage();
     void showChatWidget1();
     void showChatWidget2();
     void showChatWidget3();
@@ -26,6 +27,8 @@ private:
     QToolButton *toolBtn4;
     QToolButton *toolBtn5;
     QToolButton *toolBtn6;
+
+    QPushButton *user_Info_btn;
 
     Widget *chatWidget1;
     Widget *chatWidget2;

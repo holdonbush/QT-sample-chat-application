@@ -28,18 +28,21 @@ SOURCES += \
         loginin.cpp \
     register.cpp \
     widget.cpp \
-    drawer.cpp
+    drawer.cpp \
+    userinfo.cpp
 
 HEADERS += \
         loginin.h \
     register.h \
     widget.h \
-    drawer.h
+    drawer.h \
+    userinfo.h
 
 FORMS += \
         loginin.ui \
     register.ui \
-    widget.ui
+    widget.ui \
+    userinfo.ui
 
 RESOURCES += \
     companyimsource.qrc

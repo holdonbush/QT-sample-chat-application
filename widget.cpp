@@ -1,5 +1,6 @@
 #include "widget.h"
 #include "ui_widget.h"
+#include "userinfo.h"
 
 Widget::Widget(QWidget *parent,QString usrname) :
     QWidget(parent),

@@ -1,4 +1,5 @@
 #include "drawer.h"
+#include "userinfo.h"
 #include <QGroupBox>
 #include <QVBoxLayout>
 
@@ -7,6 +8,9 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
 {
     setWindowTitle("Company IM");
     setWindowIcon(QPixmap(":/img/cat.png"));
+
+    user_Info_btn = new QPushButton("个人信息");
+
 
     toolBtn1 = new QToolButton;
     toolBtn1->setText("1");
@@ -67,9 +71,12 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     Layout->addWidget(toolBtn4);
     Layout->addWidget(toolBtn5);
     Layout->addWidget(toolBtn6);
+    Layout->addStretch(40);
+    Layout->addWidget(user_Info_btn);
 
     Layout->addStretch();
     this->addItem((QWidget*)groupBox,tr("群成员"));
+    connect(user_Info_btn,SIGNAL(clicked(bool)),this,SLOT(userInfoPage()));
 }
 
 void Drawer::receivesignal(QString name)
@@ -124,4 +131,12 @@ void Drawer::showChatWidget6()
     chatWidget6->setWindowTitle(toolBtn6->text());
     chatWidget6->setWindowIcon(toolBtn6->icon());
     chatWidget6->show();
+}
+
+void Drawer::userInfoPage()
+{
+    userInfo u(this);
+    this->hide();
+    u.exec();
+    this->show();
 }
