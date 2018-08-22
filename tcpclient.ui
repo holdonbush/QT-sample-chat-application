@@ -23,16 +23,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>340</y>
-     <width>531</width>
-     <height>61</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="send_Btn">
    <property name="geometry">
     <rect>
@@ -57,6 +47,16 @@
    </property>
    <property name="text">
     <string>加入聊天室</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>340</y>
+     <width>531</width>
+     <height>61</height>
+    </rect>
    </property>
   </widget>
   <widget class="QWidget" name="">

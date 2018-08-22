@@ -2,6 +2,7 @@
 #include "ui_tcpclient.h"
 #include <QMessageBox>
 #include <QHostInfo>
+#include <QCoreApplication>
 
 TcpClient::TcpClient(QWidget *parent) :
     QDialog(parent),
@@ -76,15 +77,16 @@ void TcpClient::slotConnected()
 
 void TcpClient::slotSend()
 {
-    if(ui->textEdit->toPlainText() == "")
+    if(ui->lineEdit_4->text() == "")
     {
         return;
     }
-    QString msg = userName + ":" + ui->textEdit->toPlainText();
+    QString msg = userName + ":" + ui->lineEdit_4->text();
 
     //QByteArray str = msg.toUtf8();
+    //str.append("\n");
     tcpSocket->write(msg.toLatin1(),msg.length());
-    ui->textEdit->clear();
+    ui->lineEdit_4->clear();
 }
 
 void TcpClient::slotDisconnected()
