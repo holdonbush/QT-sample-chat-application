@@ -11,6 +11,14 @@ Register::Register(QWidget *parent) :
     ui->PWD_LineEdit->setEchoMode(QLineEdit::Password);
     ui->PWDConf_LineEdit->setEchoMode(QLineEdit::Password);
 
+    status = false;
+    port = 8010;
+    QString ip = "127.0.0.1";
+    serverIP = new QHostAddress;
+    serverIP->setAddress(ip);
+    tcpSocket = new QTcpSocket(this);
+    tcpSocket->connectToHost(*serverIP,port);
+
     connect((LoginIn* )parent,SIGNAL(transmitdb(QSqlDatabase)),this,SLOT(receivedb(QSqlDatabase)));
 
 }
@@ -38,7 +46,6 @@ void Register::on_Registe_Btn_clicked()
     int newchatid = max_id+1;
     QString newpasswd = NULL;
     QString newname = NULL;
-
     if(ui->PWD_LineEdit->text()==""||ui->PWDConf_LineEdit->text()=="")
     {
         passwdFlag = false;
@@ -58,6 +65,7 @@ void Register::on_Registe_Btn_clicked()
         qDebug()<<"passwd err";
         passwdFlag=false;
     }
+
 
     //数据库操作
     QSqlQuery sql_query;
@@ -135,7 +143,14 @@ void Register::on_Registe_Btn_clicked()
         qDebug()<<"inserted!";    //成功插入
     }
 
+    //tcpSocket->write(&newchatid,sizeof(int));
+    QString str = ui->UserName_LineEdit->text()+"/" + ui->PWD_LineEdit->text();
+    tcpSocket->write(str.toLatin1());
+    tcpSocket->flush();
+
+    tcpSocket->disconnectFromHost();
     this->close();
+
 }
 
 void Register::receivedb(QSqlDatabase db)

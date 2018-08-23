@@ -6,6 +6,9 @@
 #include <QtSql/QSqlError>
 #include <QtSql/QSqlQuery>
 #include <QDebug>
+#include <QtNetwork/QTcpServer>
+#include <QtNetwork/QTcpSocket>
+#include <QHostAddress>
 
 namespace Ui {
 class Register;
@@ -25,9 +28,15 @@ private slots:
     void on_Registe_Btn_clicked();
 
     void receivedb(QSqlDatabase db);
+
 private:
     Ui::Register *ui;
     QSqlDatabase database;
+    bool status;
+    int port;
+    QTcpServer *tcpServer;
+    QTcpSocket *tcpSocket;
+    QHostAddress *serverIP;
 
     bool tableFlag;
     int max_id;

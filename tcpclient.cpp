@@ -85,8 +85,9 @@ void TcpClient::slotSend()
 
     //QByteArray str = msg.toUtf8();
     //str.append("\n");
-    tcpSocket->write(msg.toLatin1(),msg.length());
+    tcpSocket->write(msg.toLocal8Bit());
     ui->lineEdit_4->clear();
+    //ui->listWidget->addItem(msg.left(msg.size()));
 }
 
 void TcpClient::slotDisconnected()
@@ -103,6 +104,6 @@ void TcpClient::dataReceived()
         datagram.resize(tcpSocket->bytesAvailable());
         tcpSocket->read(datagram.data(),datagram.size());
         QString msg = datagram.data();
-        ui->listWidget->addItem(msg.left(datagram.size()));
+        ui->listWidget->addItem(msg.left(datagram.size()).toUtf8());
     }
 }

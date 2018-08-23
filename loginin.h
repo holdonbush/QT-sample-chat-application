@@ -4,6 +4,9 @@
 #include <QDialog>
 #include <QPainter>
 #include <QtSql/QSqlDatabase>
+#include <QtNetwork/QTcpServer>
+#include <QtNetwork/QTcpSocket>
+#include <QHostAddress>
 
 namespace Ui {
 class LoginIn;
@@ -24,6 +27,8 @@ private slots:
 
     void getUserInfo(QString name);
 
+    void datareceived();
+
 signals:
     void firstpageshow(QString); //转到第一个界面
 
@@ -31,6 +36,13 @@ signals:
 
 private:
     Ui::LoginIn *ui;
+    bool status;
+    int port;
+    QTcpServer *tcpServer;
+    QTcpSocket *tcpSocket;
+    QHostAddress *serverIP;
+
+
     QSqlDatabase database;     //定义数据库对象
     bool tableFlag;
 
