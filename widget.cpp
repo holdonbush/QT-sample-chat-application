@@ -13,6 +13,14 @@ Widget::Widget(QWidget *parent,QString usrname) :
     udpSocket->bind(port,QUdpSocket::ShareAddress|QUdpSocket::ReuseAddressHint);
     connect(udpSocket,SIGNAL(readyRead()),this,SLOT(processPendingDatagram()));
     sendMsg(UsrEnter);
+
+    ui->boldTBtn->setIcon(QPixmap(":img/bold.png"));
+    ui->italicTBtn->setIcon(QPixmap(":img/italic.png"));
+    ui->underlineTBtn->setIcon(QPixmap(":img/underline.png"));
+    ui->colorTBtn->setIcon(QPixmap(":img/color.png"));
+    ui->sendTBtn->setIcon(QPixmap(":img/send.png"));
+    ui->saveTBtn->setIcon(QPixmap(":img/save.png"));
+    ui->clearTBtn->setIcon(QPixmap(":img/clear.png"));
 }
 
 Widget::~Widget()
