@@ -10,6 +10,7 @@
 #include <QtNetwork/QNetworkInterface>
 #include <QProcess>
 
+class Server;
 namespace Ui {
 class Widget;
 }
@@ -30,6 +31,7 @@ protected:
     QString getIP();
     QString getUsr();
     QString getMsg();
+    void hasPendingFile(QString usrname,QString srvaddr,QString clntaddr,QString filename);
 
 private slots:
     void processPendingDatagram();
@@ -38,12 +40,19 @@ private slots:
 
     void on_exitBtn_clicked();
 
+    void getFileName(QString);
+
+
+    void on_sendTBtn_clicked();
+
 private:
     Ui::Widget *ui;
     QUdpSocket *udpSocket;
     qint16 port;
     QString uName;
     QString uName_1;
+    QString fileName;
+    Server *srv;
 };
 
 #endif // WIDGET_H

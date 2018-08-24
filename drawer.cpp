@@ -157,16 +157,18 @@ void Drawer::showChatWidget6()
 
 void Drawer::userInfoPage()
 {
-    userInfo u(this);
+    //userInfo u(this);
+    userInfo *u = new userInfo(this);
     //this->hide();
-    u.exec();
+    u->show();
     //this->show();
 }
 
 void Drawer::groupPage()
 {
-    TcpClient t(this);
-    t.exec();
+    //TcpClient t(this);
+    TcpClient *t = new TcpClient(this);
+    t->show();
 }
 
 void Drawer::LoginOut()

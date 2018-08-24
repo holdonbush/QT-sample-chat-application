@@ -30,7 +30,9 @@ SOURCES += \
     widget.cpp \
     drawer.cpp \
     userinfo.cpp \
-    tcpclient.cpp
+    tcpclient.cpp \
+    server.cpp \
+    client.cpp
 
 HEADERS += \
         loginin.h \
@@ -38,14 +40,18 @@ HEADERS += \
     widget.h \
     drawer.h \
     userinfo.h \
-    tcpclient.h
+    tcpclient.h \
+    server.h \
+    client.h
 
 FORMS += \
         loginin.ui \
     register.ui \
     widget.ui \
     userinfo.ui \
-    tcpclient.ui
+    tcpclient.ui \
+    server.ui \
+    client.ui
 
 RESOURCES += \
     companyimsource.qrc
