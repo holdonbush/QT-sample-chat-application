@@ -2,6 +2,9 @@
 #define USERINFO_H
 
 #include <QDialog>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
 
 namespace Ui {
 class userInfo;
@@ -20,8 +23,15 @@ private slots:
 
     void on_ChangePwd_Btn_clicked();
 
+    //void receivedb(QSqlDatabase db);
+
+    void on_pushButton_clicked();
+
 private:
     Ui::userInfo *ui;
+
+    QSqlDatabase database;
+
 };
 
 #endif // USERINFO_H
