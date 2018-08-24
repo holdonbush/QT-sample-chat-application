@@ -124,7 +124,7 @@ void LoginIn::on_Login_Btn_clicked()
         {
             ui->label_3->setText("");
             //用户名和密码均正确
-            this->hide();
+            this->close();
             emit firstpageshow(usr_name);
         }
     }
@@ -197,4 +197,11 @@ void LoginIn::datareceived()
         this->hide();
         emit firstpageshow(ui->UserName_LineEdit->text());
     }
+}
+
+void LoginIn::showThisPage()
+{
+    ui->UserName_LineEdit->clear();
+    ui->PWD_LineEdit->clear();
+    this->exec();
 }

@@ -11,7 +11,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     setWindowIcon(QPixmap(":/img/cat.png"));
 
     user_Info_btn = new QPushButton("个人信息");
-
+    backtoLogin = new QPushButton("退出");
 
     toolBtn1 = new QToolButton;
     toolBtn1->setText("1");
@@ -89,11 +89,15 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     Layout_1->setAlignment(Qt::AlignLeft|Qt::AlignTop);
     Layout_1->addWidget(toolBtn7);
 
+
     this->addItem((QWidget*)groupBox,tr("群成员"));
     this->addItem((QWidget*)groupBox_1,tr("群"));
     this->addItem((QPushButton*)user_Info_btn,tr("个人信息"));
+    this->addItem((QPushButton*)backtoLogin,tr("退出"));
+
     connect(user_Info_btn,SIGNAL(clicked(bool)),this,SLOT(userInfoPage()));
     connect(toolBtn7,SIGNAL(clicked(bool)),this,SLOT(groupPage()));
+    connect(backtoLogin,SIGNAL(clicked(bool)),this,SLOT(LoginOut()));
 }
 
 void Drawer::receivesignal(QString name)
@@ -162,4 +166,10 @@ void Drawer::groupPage()
 {
     TcpClient t(this);
     t.exec();
+}
+
+void Drawer::LoginOut()
+{
+    this->close();
+    emit showloginpage();
 }

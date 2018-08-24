@@ -29,6 +29,8 @@ private slots:
 
     void datareceived();
 
+    void showThisPage();
+
 signals:
     void firstpageshow(QString); //转到第一个界面
 

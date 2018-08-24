@@ -11,9 +11,13 @@ class Drawer : public QToolBox
 public:
     Drawer(QWidget *parent = 0,Qt::WindowFlags f = 0);
 
+signals:
+    void showloginpage();
+
 private slots:
     void receivesignal(QString name);
     void userInfoPage();
+    void LoginOut();
     void groupPage();
     void showChatWidget1();
     void showChatWidget2();
@@ -30,7 +34,7 @@ private:
     QToolButton *toolBtn6;
 
     QPushButton *user_Info_btn;
-
+    QPushButton *backtoLogin;
     Widget *chatWidget1;
     Widget *chatWidget2;
     Widget *chatWidget3;
