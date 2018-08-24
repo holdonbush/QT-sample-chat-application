@@ -1,6 +1,7 @@
 #include "userinfo.h"
 #include "ui_userinfo.h"
 #include "loginin.h"
+#include "drawer.h"
 #include <QInputDialog>
 #include <QDebug>
 #include <QMessageBox>
@@ -17,7 +18,7 @@ userInfo::userInfo(QWidget *parent) :
     ui->userName_show->setText(parent->windowTitle());
     ui->lineEdit->setText("****");
 
-    connect((LoginIn*)parent,SIGNAL(transmitdb(QSqlDatabase)),this,SLOT(receivedb(QSqlDatabase)));
+    connect(this,SIGNAL(changetitle(QString)),(Drawer*)parent,SLOT(changetitle(QString)));
 
     //
     database = QSqlDatabase::addDatabase("QSQLITE");
@@ -89,6 +90,7 @@ void userInfo::on_ChangeName_Btn_clicked()
                         qDebug()<< "updated!";
                         ui->userName_show->setText(text);
                         setWindowTitle(text);
+                        emit changetitle(text);
                     }
                 }
             }

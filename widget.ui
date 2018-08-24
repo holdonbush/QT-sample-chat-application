@@ -61,8 +61,8 @@
     <rect>
      <x>10</x>
      <y>320</y>
-     <width>161</width>
-     <height>22</height>
+     <width>171</width>
+     <height>31</height>
     </rect>
    </property>
   </widget>
@@ -71,8 +71,8 @@
     <rect>
      <x>190</x>
      <y>320</y>
-     <width>87</width>
-     <height>22</height>
+     <width>101</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="currentIndex">
@@ -198,7 +198,7 @@
     <rect>
      <x>10</x>
      <y>490</y>
-     <width>891</width>
+     <width>881</width>
      <height>16</height>
     </rect>
    </property>

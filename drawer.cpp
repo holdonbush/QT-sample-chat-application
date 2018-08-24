@@ -10,6 +10,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     setWindowTitle("Company IM");
     setWindowIcon(QPixmap(":/img/cat.png"));
 
+    //connect((userInfo*)parent,SIGNAL(changetitle(QString)),this,SLOT(changetitle(QString)));
     user_Info_btn = new QPushButton("个人信息");
     backtoLogin = new QPushButton("退出");
 
@@ -157,9 +158,9 @@ void Drawer::showChatWidget6()
 void Drawer::userInfoPage()
 {
     userInfo u(this);
-    this->hide();
+    //this->hide();
     u.exec();
-    this->show();
+    //this->show();
 }
 
 void Drawer::groupPage()
@@ -172,4 +173,9 @@ void Drawer::LoginOut()
 {
     this->close();
     emit showloginpage();
+}
+
+void Drawer::changetitle(QString s)
+{
+    this->setWindowTitle(s);
 }

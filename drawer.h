@@ -17,6 +17,7 @@ signals:
 private slots:
     void receivesignal(QString name);
     void userInfoPage();
+    void changetitle(QString s);
     void LoginOut();
     void groupPage();
     void showChatWidget1();

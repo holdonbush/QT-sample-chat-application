@@ -1,6 +1,7 @@
 #include "loginin.h"
 #include "widget.h"
 #include "drawer.h"
+#include "userinfo.h"
 #include <QApplication>
 #include <QCoreApplication>
 
