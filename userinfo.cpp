@@ -14,6 +14,14 @@ userInfo::userInfo(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(parent->windowTitle());
 
+
+    port = 8010;
+    QString ip = "127.0.0.1";
+    serverIP = new QHostAddress;
+    serverIP->setAddress(ip);
+    tcpSocket = new QTcpSocket(this);
+    tcpSocket->connectToHost(*serverIP,port);
+
     ui->label->setPixmap(QPixmap(":/img/cat.png").scaled(ui->label->width(),ui->label->height(),Qt::KeepAspectRatio));
     ui->userName_show->setText(parent->windowTitle());
     ui->lineEdit->setText("****");
@@ -63,6 +71,9 @@ void userInfo::on_ChangeName_Btn_clicked()
     QString text = QInputDialog::getText(this,tr("更改姓名"),tr("请输入姓名"),QLineEdit::Normal,ui->userName_show->text(),&ok);
     QSqlQuery sqlquery(database);
 
+    QString change = windowTitle() + "@" + text;
+    tcpSocket->write(change.toLocal8Bit());
+    tcpSocket->flush();
     QString select_sql = "select chatid , passwd , name from user";
     QString update_sql = "update user set name = :name where chatid = :chatid ";
 
@@ -123,6 +134,11 @@ void userInfo::on_ChangePwd_Btn_clicked()
             QMessageBox::information(this,tr("information"),tr("修改成功"),QMessageBox::Ok);
         }
     }
+
+    //
+    QString change = name + "#" + text;
+    tcpSocket->write(change.toLatin1());
+    tcpSocket->flush();
 }
 
 void userInfo::on_pushButton_clicked()

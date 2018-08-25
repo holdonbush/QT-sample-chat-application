@@ -5,6 +5,8 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QTcpSocket>
+#include <QHostAddress>
 
 namespace Ui {
 class userInfo;
@@ -34,6 +36,10 @@ private:
     Ui::userInfo *ui;
 
     QSqlDatabase database;
+
+    int port;
+    QHostAddress *serverIP;
+    QTcpSocket *tcpSocket;
 
 };
 

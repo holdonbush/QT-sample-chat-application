@@ -104,7 +104,7 @@ void LoginIn::on_Login_Btn_clicked()
 
 
     qDebug()<<"1";
-    tcpSocket->write(name1.toLatin1());
+    tcpSocket->write(name1.toLocal8Bit());
     tcpSocket->flush();
     //ui->Login_Btn->click();
 //    if(matchFlag == false)
