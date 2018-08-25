@@ -58,6 +58,7 @@ void TcpClient::slotEnter()
         {
             return;
         }
+        qDebug()<<"disconnect";
         tcpSocket->disconnectFromHost();
         status = false;
     }
@@ -98,12 +99,17 @@ void TcpClient::slotDisconnected()
 
 void TcpClient::dataReceived()
 {
-    while(tcpSocket->bytesAvailable() > 0)
+   /* while(tcpSocket->bytesAvailable() > 0)
     {
+        qDebug()<<"read";
         QByteArray datagram;
         datagram.resize(tcpSocket->bytesAvailable());
         tcpSocket->read(datagram.data(),datagram.size());
         QString msg = datagram.data();
         ui->listWidget->addItem(msg.left(datagram.size()).toUtf8());
-    }
+    } */
+    qDebug()<<"receive";
+    QByteArray byte = tcpSocket->readAll();
+    QString str = QString::fromLocal8Bit(byte);
+    ui->listWidget->addItem(str.left(str.size()));
 }

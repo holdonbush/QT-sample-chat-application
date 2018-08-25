@@ -22,7 +22,7 @@ LoginIn::LoginIn(QWidget *parent) :
     serverIP->setAddress(ip);
     tcpSocket = new QTcpSocket(this);
     tcpSocket->connectToHost(*serverIP,port);
-
+    connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(datareceived()));
 
     connect(ui->UserName_LineEdit,SIGNAL(textChanged(QString)),this,SLOT(getUserInfo(QString)));
     tableFlag = false;
@@ -99,20 +99,24 @@ void LoginIn::on_Registe_Btn_clicked()
 void LoginIn::on_Login_Btn_clicked()
 {
     QString name1 = ui->UserName_LineEdit->text()+"/-";
-    tcpSocket->write(name1.toLatin1());
-    tcpSocket->flush();
     qDebug()<<"click";
     qDebug()<<matchFlag;
-    if(matchFlag == false)
-    {
-        //用户名错误
-        qDebug()<<"name invalid";
-        ui->label_2->setText("用户名错误");
-    }
-    else
-    {
-        qDebug()<<"1";
-        //connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(datareceived()));
+
+
+    qDebug()<<"1";
+    tcpSocket->write(name1.toLatin1());
+    tcpSocket->flush();
+    //ui->Login_Btn->click();
+//    if(matchFlag == false)
+//    {
+//        //用户名错误
+//        qDebug()<<"name invalid";
+//        ui->label_2->setText("用户名错误");
+//    }
+    //else
+    //{
+
+        /*
         ui->label_2->setText("");
         if(usr_passwd!=ui->PWD_LineEdit->text())
         {
@@ -126,8 +130,8 @@ void LoginIn::on_Login_Btn_clicked()
             //用户名和密码均正确
             this->close();
             emit firstpageshow(usr_name);
-        }
-    }
+        }*/
+    //}
 }
 
 void LoginIn::getUserInfo(QString name)
@@ -159,44 +163,60 @@ void LoginIn::getUserInfo(QString name)
 
 void LoginIn::datareceived()
 {
-    /*
-    while(tcpSocket->bytesAvailable() > 0)
-    {
-        QByteArray datagram;
-        datagram.resize(tcpSocket->bytesAvailable());
-        tcpSocket->read(datagram.data(),datagram.size());
-        QString msg = datagram.data();
 
-        ui->label_2->setText("");
-        if(usr_passwd!=ui->PWD_LineEdit->text())
-        {
-            //密码错误
-            qDebug()<<"passwd not match";
-            ui->label_3->setText("密码错误");
-        }
-        else
-        {
-            ui->label_3->setText("");
-            //用户名和密码均正确
-            this->hide();
-            emit firstpageshow(usr_name);
-        }
-    }*/
+//    while(tcpSocket->bytesAvailable() > 0)
+//    {
+//        QByteArray datagram;
+//        datagram.resize(tcpSocket->bytesAvailable());
+//        tcpSocket->read(datagram.data(),datagram.size());
+//        QString msg = datagram.data();
+//        qDebug()<<msg;
+//        ui->label_2->setText("");
+//        if(msg!=ui->PWD_LineEdit->text())
+//        {
+//            //密码错误
+//            qDebug()<<"passwd not match";
+//            ui->label_3->setText("密码错误");
+//        }
+//        else
+//        {
+//            ui->label_3->setText("");
+//            //用户名和密码均正确
+//            this->hide();
+//            emit firstpageshow(usr_name);
+//        }
+//    }
     qDebug()<<"receive function";
     QByteArray buffer;
     buffer = tcpSocket->readAll();
     QString str = QString::fromLocal8Bit(buffer);
-    if(str!=ui->PWD_LineEdit->text())
+    qDebug()<<str;
+    ui->label_2->clear();
+    ui->label_3->clear();
+    if(str != "***")
     {
-        qDebug()<<"passwd not match";
-        ui->label_3->setText("密码错误");
+        if(str!=ui->PWD_LineEdit->text())
+        {
+            qDebug()<<"passwd not match";
+            ui->label_3->setText("密码错误");
+            ui->UserName_LineEdit->clear();
+            ui->PWD_LineEdit->clear();
+        }
+        else
+        {
+            ui->label_3->clear();
+            this->hide();
+            emit firstpageshow(ui->UserName_LineEdit->text());
+        }
+    }
+    else if(str.contains("*")) {
+        //ui->label_2->setText("用户名错误");
+        QMessageBox::warning(this,tr("ERROR"),tr("用户名错误"));
+        ui->UserName_LineEdit->clear();
+        ui->PWD_LineEdit->clear();
     }
     else
-    {
-        ui->label_3->clear();
-        this->hide();
-        emit firstpageshow(ui->UserName_LineEdit->text());
-    }
+    {};
 }
 
 void LoginIn::showThisPage()
