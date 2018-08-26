@@ -4,12 +4,14 @@
 #include <QHostInfo>
 #include <QCoreApplication>
 
+
 TcpClient::TcpClient(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TcpClient)
 {
     ui->setupUi(this);
     setWindowTitle("群聊");
+    userName = windowTitle();
 
     status = false;
     port = 8010;
@@ -17,6 +19,7 @@ TcpClient::TcpClient(QWidget *parent) :
     ui->lineEdit_2->setText("127.0.0.1");
     ui->lineEdit->setText(parent->windowTitle());
     serverIP = new QHostAddress();
+
     connect(ui->join_Btn,SIGNAL(clicked(bool)),this,SLOT(slotEnter()));
     connect(ui->send_Btn,SIGNAL(clicked(bool)),this,SLOT(slotSend()));
     ui->send_Btn->setEnabled(false);

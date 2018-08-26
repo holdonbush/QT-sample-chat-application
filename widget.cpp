@@ -4,6 +4,7 @@
 #include "server.h"
 #include "client.h"
 #include <QFileDialog>
+#include <QColorDialog>
 
 Widget::Widget(QWidget *parent,QString usrname) :
     QWidget(parent),
@@ -19,6 +20,7 @@ Widget::Widget(QWidget *parent,QString usrname) :
 
     srv = new Server(this);
     connect(srv,SIGNAL(sendFileName(QString)),this,SLOT(getFileName(QString)));
+    connect(ui->msgTxtEdit,SIGNAL(currentCharFormatChanged(QTextCharFormat)),this,SLOT(curFmtChange(QTextCharFormat)));
 
     ui->boldTBtn->setIcon(QPixmap(":img/bold.png"));
     ui->italicTBtn->setIcon(QPixmap(":img/italic.png"));
@@ -184,7 +186,7 @@ void Widget::on_sendBtn_clicked()
 
 void Widget::on_exitBtn_clicked()
 {
-    sendMsg(UsrLeft);
+    //sendMsg(UsrLeft);
     this->close();
 }
 
@@ -237,4 +239,127 @@ void Client::setHostAddr(QHostAddress addr)
 {
     hostAddr = addr;
     newConn();
+}
+
+void Widget::on_fontCbx_currentFontChanged(const QFont &f)
+{
+    ui->msgTxtEdit->setCurrentFont(f);
+    ui->msgTxtEdit->setFocus();
+}
+
+void Widget::on_comboBox_currentIndexChanged(const QString &arg1)
+{
+    ui->msgTxtEdit->setFontPointSize(arg1.toDouble());
+    ui->msgTxtEdit->setFocus();
+}
+
+void Widget::on_boldTBtn_clicked(bool checked)
+{
+    qDebug()<<checked;
+    qDebug()<<"F";
+    if(checked)
+    {
+        qDebug()<<"bold";
+        ui->msgTxtEdit->setFontWeight(QFont::Bold);
+    }
+    else {
+        qDebug()<<"normal";
+        ui->msgTxtEdit->setFontWeight(QFont::Normal);
+    }
+    ui->msgTxtEdit->setFocus();
+}
+
+void Widget::on_italicTBtn_clicked(bool checked)
+{
+    ui->msgTxtEdit->setFontItalic(checked);
+    ui->msgTxtEdit->setFocus();
+}
+
+void Widget::on_underlineTBtn_clicked(bool checked)
+{
+    ui->msgTxtEdit->setFontUnderline(checked);
+    ui->msgTxtEdit->setFocus();
+}
+
+void Widget::on_colorTBtn_clicked()
+{
+    color = QColorDialog::getColor(color,this);
+    if(color.isValid())
+    {
+        ui->msgTxtEdit->setTextColor(color);
+        ui->msgTxtEdit->setFocus();
+    }
+}
+
+//void Widget::on_boldTBtn_toggled(bool checked)
+//{
+//    qDebug()<<checked;
+//    qDebug()<<"F";
+//    if(checked)
+//    {
+//        qDebug()<<"bold";
+//        ui->msgTxtEdit->setFontWeight(QFont::Bold);
+//    }
+//    else {
+//        qDebug()<<"normal";
+//        ui->msgTxtEdit->setFontWeight(QFont::Normal);
+//    }
+//    ui->msgTxtEdit->setFocus();
+//}
+
+void Widget::curFmtChange(const QTextCharFormat &fmt)
+{
+    ui->fontCbx->setCurrentFont(fmt.font());
+
+    if(fmt.fontPointSize() < 8)
+    {
+        ui->comboBox->setCurrentIndex(4);
+    }
+    else
+    {
+        ui->comboBox->setCurrentIndex(ui->comboBox->findText(QString::number(fmt.fontPointSize())));
+    }
+    ui->boldTBtn->setChecked(fmt.font().bold());
+    ui->italicTBtn->setChecked(fmt.font().italic());
+    ui->underlineTBtn->setChecked(fmt.font().underline());
+    color = fmt.foreground().color();
+}
+
+void Widget::on_saveTBtn_clicked()
+{
+    if(ui->msgBrowser->document()->isEmpty())
+    {
+        QMessageBox::warning(0,tr("警告"),tr("聊天记录为空，无法保存"),QMessageBox::Ok);
+    }
+    else {
+        QString fname = QFileDialog::getSaveFileName(this,tr("保存聊天记录"),tr("聊天记录"),tr("文本(*.txt);;所有文件(*.*)"));
+        if(!fname.isEmpty())
+        {
+            saveFile(fname);
+        }
+    }
+}
+
+bool Widget::saveFile(const QString &filename)
+{
+    QFile file(filename);
+    if(!file.open(QFile::WriteOnly | QFile::Text))
+    {
+        QMessageBox::warning(this,tr("保存文件"),tr("无法保存文件 %1:\n %2").arg(filename).arg(file.errorString()));
+        return false;
+    }
+    QTextStream out(&file);
+    out << ui->msgBrowser->toPlainText();
+    return true;
+}
+
+void Widget::on_clearTBtn_clicked()
+{
+    ui->msgBrowser->clear();
+}
+
+void Widget::closeEvent(QCloseEvent *event)
+{
+    sendMsg(UsrLeft);
+    QWidget::closeEvent(event);
 }

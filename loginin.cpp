@@ -205,7 +205,7 @@ void LoginIn::datareceived()
         else
         {
             ui->label_3->clear();
-            this->hide();
+            this->close();
             emit firstpageshow(ui->UserName_LineEdit->text());
         }
     }

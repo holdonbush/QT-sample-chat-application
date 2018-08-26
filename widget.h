@@ -9,6 +9,8 @@
 #include <QDateTime>
 #include <QtNetwork/QNetworkInterface>
 #include <QProcess>
+#include <QTextCharFormat>
+
 
 class Server;
 namespace Ui {
@@ -32,7 +34,8 @@ protected:
     QString getUsr();
     QString getMsg();
     void hasPendingFile(QString usrname,QString srvaddr,QString clntaddr,QString filename);
-
+    bool saveFile(const QString &filename);
+    void closeEvent(QCloseEvent *event);
 private slots:
     void processPendingDatagram();
 
@@ -45,6 +48,24 @@ private slots:
 
     void on_sendTBtn_clicked();
 
+    void on_fontCbx_currentFontChanged(const QFont &f);
+
+    void on_comboBox_currentIndexChanged(const QString &arg1);
+
+    void on_boldTBtn_clicked(bool checked);
+
+    void on_italicTBtn_clicked(bool checked);
+
+    void on_underlineTBtn_clicked(bool checked);
+
+    void on_colorTBtn_clicked();
+
+    //void on_boldTBtn_toggled(bool checked);
+    void curFmtChange(const QTextCharFormat &fmt);
+    void on_saveTBtn_clicked();
+
+    void on_clearTBtn_clicked();
+
 private:
     Ui::Widget *ui;
     QUdpSocket *udpSocket;
@@ -52,6 +73,7 @@ private:
     QString uName;
     QString uName_1;
     QString fileName;
+    QColor color;
     Server *srv;
 };
 
