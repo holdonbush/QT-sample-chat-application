@@ -1,3 +1,8 @@
+/*
+ * 用户的个人信息界面
+ * 可以实现更改用户用户名，密码的功能
+ */
+
 #ifndef USERINFO_H
 #define USERINFO_H
 

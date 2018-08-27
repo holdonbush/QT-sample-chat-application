@@ -65,6 +65,11 @@ userInfo::~userInfo()
     delete ui;
 }
 
+/*
+ * 函数名：on_ChangeName_Btn_clicked
+ * 功能：更改用户名，向服务端发送新用户名，服务端在数据库相应位置更新信息
+ * 返回值：void
+ */
 void userInfo::on_ChangeName_Btn_clicked()
 {
     bool ok;
@@ -110,6 +115,11 @@ void userInfo::on_ChangeName_Btn_clicked()
 
 }
 
+/*
+ * 函数名：on_ChangePwd_Btn_clicked
+ * 功能：更改密码，向服务端发送新密码，服务端在数据库相应位置更新信息
+ * 返回值：void
+ */
 void userInfo::on_ChangePwd_Btn_clicked()
 {
     bool ok;
@@ -141,6 +151,11 @@ void userInfo::on_ChangePwd_Btn_clicked()
     tcpSocket->flush();
 }
 
+/*
+ * 函数名：on_pushButton_clicked
+ * 功能：关闭该页面
+ * 返回值：void
+ */
 void userInfo::on_pushButton_clicked()
 {
     this->close();

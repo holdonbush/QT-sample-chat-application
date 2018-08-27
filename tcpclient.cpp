@@ -81,6 +81,11 @@ void TcpClient::slotEnter()
     }
 }
 
+/*
+ * 函数名：slotConnected
+ * 功能：新连接加入
+ * 返回值：void
+ */
 void TcpClient::slotConnected()
 {
     ui->send_Btn->setEnabled(true);
@@ -93,6 +98,11 @@ void TcpClient::slotConnected()
     }
 }
 
+/*
+ * 函数名：slotSend
+ * 功能：发送消息
+ * 返回值：void
+ */
 void TcpClient::slotSend()
 {
     if(ui->textEdit->toPlainText() == "")
@@ -102,11 +112,8 @@ void TcpClient::slotSend()
     QString str = windowTitle();
     QString msg = userName + ":" + "+" + ui->textEdit->toHtml();
     ui->textBrowser->append(userName+":");
-    //QByteArray str = msg.toUtf8();
-    //str.append("\n");
     tcpSocket->write(msg.toLocal8Bit());
     ui->textEdit->clear();
-    //ui->listWidget->addItem(msg.left(msg.size()));
 }
 
 void TcpClient::slotDisconnected()
@@ -117,15 +124,6 @@ void TcpClient::slotDisconnected()
 
 void TcpClient::dataReceived()
 {
-   /* while(tcpSocket->bytesAvailable() > 0)
-    {
-        qDebug()<<"read";
-        QByteArray datagram;
-        datagram.resize(tcpSocket->bytesAvailable());
-        tcpSocket->read(datagram.data(),datagram.size());
-        QString msg = datagram.data();
-        ui->listWidget->addItem(msg.left(datagram.size()).toUtf8());
-    } */
     qDebug()<<"receive";
     QByteArray byte = tcpSocket->readAll();
     QString str = QString::fromLocal8Bit(byte);
@@ -133,18 +131,33 @@ void TcpClient::dataReceived()
     ui->textBrowser->append(str);
 }
 
+/*
+ * 函数名：on_fontComboBox_currentFontChanged
+ * 功能：改变字体
+ * 返回值：void
+ */
 void TcpClient::on_fontComboBox_currentFontChanged(const QFont &f)
 {
     ui->textEdit->setCurrentFont(f);
     ui->textEdit->setFocus();
 }
 
+/*
+ * 函数名：on_comboBox_currentIndexChanged
+ * 功能：改变字体大小
+ * 返回值：void
+ */
 void TcpClient::on_comboBox_currentIndexChanged(const QString &arg1)
 {
     ui->textEdit->setFontPointSize(arg1.toDouble());
     ui->textEdit->setFocus();
 }
 
+/*
+ * 函数名：on_toolButton_clicked
+ * 功能：字体加粗
+ * 返回值：void
+ */
 void TcpClient::on_toolButton_clicked(bool checked)
 {
     qDebug()<<checked;
@@ -161,18 +174,33 @@ void TcpClient::on_toolButton_clicked(bool checked)
     ui->textEdit->setFocus();
 }
 
+/*
+ * 函数名：on_toolButton_2_clicked
+ * 功能：字体倾斜
+ * 返回值：void
+ */
 void TcpClient::on_toolButton_2_clicked(bool checked)
 {
     ui->textEdit->setFontItalic(checked);
     ui->textEdit->setFocus();
 }
 
+/*
+ * 函数名：on_toolButton_3_clicked
+ * 功能：字体加下划线
+ * 返回值：void
+ */
 void TcpClient::on_toolButton_3_clicked(bool checked)
 {
     ui->textEdit->setFontUnderline(checked);
     ui->textEdit->setFocus();
 }
 
+/*
+ * 函数名：on_toolButton_4_clicked
+ * 功能：改变字体颜色
+ * 返回值：void
+ */
 void TcpClient::on_toolButton_4_clicked()
 {
     color = QColorDialog::getColor(color,this);
@@ -183,6 +211,11 @@ void TcpClient::on_toolButton_4_clicked()
     }
 }
 
+/*
+ * 函数名：curFmtChanged
+ * 功能：适应在输入框中的不同字体
+ * 返回值：void
+ */
 void TcpClient::curFmtChanged(const QTextCharFormat &fmt)
 {
     ui->fontComboBox->setCurrentFont(fmt.font());
@@ -199,6 +232,11 @@ void TcpClient::curFmtChanged(const QTextCharFormat &fmt)
     color = fmt.foreground().color();
 }
 
+/*
+ * 函数名：on_toolButton_6_clicked
+ * 功能：保存聊天记录
+ * 返回值：void
+ */
 void TcpClient::on_toolButton_6_clicked()
 {
     if(ui->textBrowser->document()->isEmpty())
@@ -215,6 +253,11 @@ void TcpClient::on_toolButton_6_clicked()
     }
 }
 
+/*
+ * 函数名：saveFile
+ * 功能：保存文件
+ * 返回值：void
+ */
 bool TcpClient::saveFile(const QString &filename)
 {
     QFile file(filename);
@@ -227,11 +270,22 @@ bool TcpClient::saveFile(const QString &filename)
     out << ui->textBrowser->toPlainText();
     return true;
 }
+
+/*
+ * 函数名：on_toolButton_7_clicked
+ * 功能：清空聊天记录
+ * 返回值：void
+ */
 void TcpClient::on_toolButton_7_clicked()
 {
     ui->textBrowser->clear();
 }
 
+/*
+ * 函数名：on_toolButton_5_clicked
+ * 功能：发送文件
+ * 返回值：void
+ */
 void TcpClient::on_toolButton_5_clicked()
 {
     SendFile *s = new SendFile(this);

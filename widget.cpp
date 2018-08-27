@@ -36,6 +36,11 @@ Widget::~Widget()
     delete ui;
 }
 
+/*
+ * 函数名：sendMsg
+ * 功能：发送消息
+ * 返回值：void
+ */
 void Widget::sendMsg(MsgType type, QString srvaddr)
 {
     QByteArray data;
@@ -75,6 +80,11 @@ void Widget::sendMsg(MsgType type, QString srvaddr)
     udpSocket->writeDatagram(data,data.length(),QHostAddress::Broadcast,port);
 }
 
+/*
+ * 函数名：processPendingDatagram
+ * 功能：UDP群聊功能中接收UDP信息
+ * 返回值：void
+ */
 void Widget::processPendingDatagram()
 {
     while (udpSocket->hasPendingDatagrams()) {
@@ -129,6 +139,11 @@ void Widget::processPendingDatagram()
     }
 }
 
+/*
+ * 函数名：usrEnter
+ * 功能：新用户上线
+ * 返回值：void
+ */
 void Widget::usrEnter(QString usrname, QString ipaddr)
 {
     bool isEmpty = ui->usrTblWidget->findItems(usrname,Qt::MatchExactly).isEmpty();
@@ -147,6 +162,11 @@ void Widget::usrEnter(QString usrname, QString ipaddr)
     }
 }
 
+/*
+ * 函数名：usrLeft
+ * 功能：用户离开
+ * 返回值：void
+ */
 void Widget::usrLeft(QString usrname, QString time)
 {
     int rowNum = ui->usrTblWidget->findItems(usrname,Qt::MatchExactly).first()->row();
@@ -157,6 +177,11 @@ void Widget::usrLeft(QString usrname, QString time)
     ui->usrNumLbl->setText(tr("在线人数 %1").arg(ui->usrTblWidget->rowCount()));
 }
 
+/*
+ * 函数名：getIP
+ * 功能：获取IP地址
+ * 返回值：QString
+ */
 QString Widget::getIP()
 {
     QList<QHostAddress> list = QNetworkInterface::allAddresses();
@@ -167,11 +192,21 @@ QString Widget::getIP()
     return 0;
 }
 
+/*
+ * 函数名：getUsr
+ * 功能：获取用户名
+ * 返回值：QString
+ */
 QString Widget::getUsr()
 {
     return uName;
 }
 
+/*
+ * 函数名：getMsg
+ * 功能：获取用户发送的消息
+ * 返回值：QString
+ */
 QString Widget::getMsg()
 {
     QString msg = ui->msgTxtEdit->toHtml();
@@ -179,11 +214,22 @@ QString Widget::getMsg()
     ui->msgTxtEdit->setFocus();
     return msg;
 }
+
+/*
+ * 函数名：on_sendBtn_clicked
+ * 功能：发送消息
+ * 返回值：void
+ */
 void Widget::on_sendBtn_clicked()
 {
     sendMsg(Msg);
 }
 
+/*
+ * 函数名：on_exitBtn_clicked
+ * 功能：离开
+ * 返回值：void
+ */
 void Widget::on_exitBtn_clicked()
 {
     //sendMsg(UsrLeft);
@@ -196,7 +242,11 @@ void Widget::getFileName(QString name)
     sendMsg(FileName);
 }
 
-
+/*
+ * 函数名：on_sendTBtn_clicked
+ * 功能：发送文件
+ * 返回值：void
+ */
 void Widget::on_sendTBtn_clicked()
 {
     if(ui->usrTblWidget->selectedItems().isEmpty())
@@ -208,6 +258,11 @@ void Widget::on_sendTBtn_clicked()
     srv->initSrv();
 }
 
+/*
+ * 函数名：hasPendingFile
+ * 功能：判断是否要接收文件
+ * 返回值：void
+ */
 void Widget::hasPendingFile(QString usrname, QString srvaddr, QString clntaddr, QString filename)
 {
     QString ipAddr = getIP();
@@ -241,18 +296,33 @@ void Client::setHostAddr(QHostAddress addr)
     newConn();
 }
 
+/*
+ * 函数名：on_fontCbx_currentFontChanged
+ * 功能：改变字体
+ * 返回值：void
+ */
 void Widget::on_fontCbx_currentFontChanged(const QFont &f)
 {
     ui->msgTxtEdit->setCurrentFont(f);
     ui->msgTxtEdit->setFocus();
 }
 
+/*
+ * 函数名：on_comboBox_currentIndexChanged
+ * 功能：改变字体大小
+ * 返回值：void
+ */
 void Widget::on_comboBox_currentIndexChanged(const QString &arg1)
 {
     ui->msgTxtEdit->setFontPointSize(arg1.toDouble());
     ui->msgTxtEdit->setFocus();
 }
 
+/*
+ * 函数名：on_boldTBtn_clicked
+ * 功能：字体加粗
+ * 返回值：void
+ */
 void Widget::on_boldTBtn_clicked(bool checked)
 {
     qDebug()<<checked;
@@ -269,18 +339,33 @@ void Widget::on_boldTBtn_clicked(bool checked)
     ui->msgTxtEdit->setFocus();
 }
 
+/*
+ * 函数名：on_italicTBtn_clicked
+ * 功能：字体倾斜
+ * 返回值：void
+ */
 void Widget::on_italicTBtn_clicked(bool checked)
 {
     ui->msgTxtEdit->setFontItalic(checked);
     ui->msgTxtEdit->setFocus();
 }
 
+/*
+ * 函数名：on_underlineTBtn_clicked
+ * 功能：字体添加下划线
+ * 返回值：void
+ */
 void Widget::on_underlineTBtn_clicked(bool checked)
 {
     ui->msgTxtEdit->setFontUnderline(checked);
     ui->msgTxtEdit->setFocus();
 }
 
+/*
+ * 函数名：on_colorTBtn_clicked
+ * 功能：改变字体颜色
+ * 返回值：void
+ */
 void Widget::on_colorTBtn_clicked()
 {
     color = QColorDialog::getColor(color,this);
@@ -291,22 +376,11 @@ void Widget::on_colorTBtn_clicked()
     }
 }
 
-//void Widget::on_boldTBtn_toggled(bool checked)
-//{
-//    qDebug()<<checked;
-//    qDebug()<<"F";
-//    if(checked)
-//    {
-//        qDebug()<<"bold";
-//        ui->msgTxtEdit->setFontWeight(QFont::Bold);
-//    }
-//    else {
-//        qDebug()<<"normal";
-//        ui->msgTxtEdit->setFontWeight(QFont::Normal);
-//    }
-//    ui->msgTxtEdit->setFocus();
-//}
-
+/*
+ * 函数名：curFmtChange
+ * 功能：适应内容输入框中不同位置的不同字体
+ * 返回值：void
+ */
 void Widget::curFmtChange(const QTextCharFormat &fmt)
 {
     ui->fontCbx->setCurrentFont(fmt.font());
@@ -325,6 +399,11 @@ void Widget::curFmtChange(const QTextCharFormat &fmt)
     color = fmt.foreground().color();
 }
 
+/*
+ * 函数名：on_saveTBtn_clicked
+ * 功能：保存聊天记录
+ * 返回值：void
+ */
 void Widget::on_saveTBtn_clicked()
 {
     if(ui->msgBrowser->document()->isEmpty())
@@ -353,6 +432,11 @@ bool Widget::saveFile(const QString &filename)
     return true;
 }
 
+/*
+ * 函数名：on_clearTBtn_clicked
+ * 功能：清空聊天记录
+ * 返回值：void
+ */
 void Widget::on_clearTBtn_clicked()
 {
     ui->msgBrowser->clear();

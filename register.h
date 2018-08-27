@@ -1,3 +1,7 @@
+/*
+ * IM的用户注册界面
+ */
+
 #ifndef REGISTER_H
 #define REGISTER_H
 

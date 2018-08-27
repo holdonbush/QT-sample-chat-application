@@ -35,6 +35,11 @@ ReceiveFile::~ReceiveFile()
     delete server;
 }
 
+/*
+ * 函数名：on_pushButton_clicked
+ * 功能：监听该端口，实现文件接收
+ * 返回值：void
+ */
 void ReceiveFile::on_pushButton_clicked()
 {
     ui->pushButton->setEnabled(false);

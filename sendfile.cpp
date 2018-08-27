@@ -43,6 +43,11 @@ SendFile::~SendFile()
     delete send;
 }
 
+/*
+ * 函数名：on_pushButton_clicked
+ * 功能：选择文件
+ * 返回值：void
+ */
 void SendFile::on_pushButton_clicked()
 {
     fileName = QFileDialog::getOpenFileName(this);
@@ -57,6 +62,11 @@ void SendFile::on_pushButton_clicked()
 
 }
 
+/*
+ * 函数名：on_pushButton_2_clicked
+ * 功能：发送文件
+ * 返回值：void
+ */
 void SendFile::on_pushButton_2_clicked()
 {
     send->connectToHost(QHostAddress::LocalHost, PORT);
@@ -66,6 +76,7 @@ void SendFile::on_pushButton_2_clicked()
     ui->label->setText(QString("Linking..."));
 
 }
+
 
 void SendFile::start_transfer()
 {

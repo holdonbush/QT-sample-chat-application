@@ -1,3 +1,7 @@
+/*
+ * UDP群聊用户的客户端，利用UDP广播机制，实现群聊功能
+ */
+
 #ifndef WIDGET_H
 #define WIDGET_H
 

@@ -101,12 +101,22 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(backtoLogin,SIGNAL(clicked(bool)),this,SLOT(LoginOut()));
 }
 
+/*
+ * 函数名：receivesignal
+ * 功能：显示这个窗口
+ * 返回值：void
+ */
 void Drawer::receivesignal(QString name)
 {
     this->show();
     this->setWindowTitle(name);
 }
 
+/*
+ * 函数名：showChatWidget1
+ * 功能：显示窗口
+ * 返回值：void
+ */
 void Drawer::showChatWidget1()
 {
     chatWidget1 = new Widget(0,toolBtn1->text());
@@ -115,6 +125,11 @@ void Drawer::showChatWidget1()
     chatWidget1->show();
 }
 
+/*
+ * 函数名：showChatWidget2
+ * 功能：显示窗口
+ * 返回值：void
+ */
 void Drawer::showChatWidget2()
 {
     chatWidget2 = new Widget(0,toolBtn2->text());
@@ -123,6 +138,11 @@ void Drawer::showChatWidget2()
     chatWidget2->show();
 }
 
+/*
+ * 函数名：showChatWidget3
+ * 功能：显示窗口
+ * 返回值：void
+ */
 void Drawer::showChatWidget3()
 {
     chatWidget3 = new Widget(0,toolBtn3->text());
@@ -131,6 +151,11 @@ void Drawer::showChatWidget3()
     chatWidget3->show();
 }
 
+/*
+ * 函数名：showChatWidget4
+ * 功能：显示窗口
+ * 返回值：void
+ */
 void Drawer::showChatWidget4()
 {
     chatWidget4 = new Widget(0,toolBtn4->text());
@@ -139,6 +164,11 @@ void Drawer::showChatWidget4()
     chatWidget4->show();
 }
 
+/*
+ * 函数名：showChatWidget5
+ * 功能：显示窗口
+ * 返回值：void
+ */
 void Drawer::showChatWidget5()
 {
     chatWidget5 = new Widget(0,toolBtn5->text());
@@ -147,6 +177,11 @@ void Drawer::showChatWidget5()
     chatWidget5->show();
 }
 
+/*
+ * 函数名：showChatWidget6
+ * 功能：显示窗口
+ * 返回值：void
+ */
 void Drawer::showChatWidget6()
 {
     chatWidget6 = new Widget(0,toolBtn6->text());
@@ -155,6 +190,11 @@ void Drawer::showChatWidget6()
     chatWidget6->show();
 }
 
+/*
+ * 函数名：userInfoPage
+ * 功能：转到用户个人信息界面
+ * 返回值：void
+ */
 void Drawer::userInfoPage()
 {
     //userInfo u(this);
@@ -164,6 +204,11 @@ void Drawer::userInfoPage()
     //this->show();
 }
 
+/*
+ * 函数名：groupPage
+ * 功能：转到TCP群聊界面
+ * 返回值：void
+ */
 void Drawer::groupPage()
 {
     //TcpClient t(this);
@@ -171,12 +216,22 @@ void Drawer::groupPage()
     t->show();
 }
 
+/*
+ * 函数名：LoginOut
+ * 功能：退出，转到登陆界面
+ * 返回值：void
+ */
 void Drawer::LoginOut()
 {
     this->close();
     emit showloginpage();
 }
 
+/*
+ * 函数名：changetitle
+ * 功能：改变窗口标题
+ * 返回值：void
+ */
 void Drawer::changetitle(QString s)
 {
     this->setWindowTitle(s);

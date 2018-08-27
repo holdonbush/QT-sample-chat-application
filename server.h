@@ -1,3 +1,8 @@
+/*
+ * UDP群聊功能里面的文件发送的服务端
+ * 实现文件发送功能
+ */
+
 #ifndef SERVER_H
 #define SERVER_H
 

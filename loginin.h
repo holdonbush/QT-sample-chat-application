@@ -1,3 +1,7 @@
+/*
+ * IM的登陆界面
+ */
+
 #ifndef LOGININ_H
 #define LOGININ_H
 
@@ -25,7 +29,7 @@ private slots:
 
     void on_Login_Btn_clicked(); //登陆界面登陆按钮槽函数
 
-    void getUserInfo(QString name);
+    void getUserInfo(QString name);   //获取用户信息，用以验证
 
     void datareceived();
 

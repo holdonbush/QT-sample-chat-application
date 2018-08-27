@@ -1,3 +1,8 @@
+/*
+ * TCP实现群聊功能的文件发送端
+ * 实现发送文件的功能
+ */
+
 #ifndef SENDFILE_H
 #define SENDFILE_H
 

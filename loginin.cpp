@@ -14,6 +14,8 @@ LoginIn::LoginIn(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("登陆");
     ui->PWD_LineEdit->setEchoMode(QLineEdit::Password);
+    ui->label_2->clear();
+    ui->label_3->clear();
 
     status = false;
     port = 8010;
@@ -94,8 +96,15 @@ void LoginIn::on_Registe_Btn_clicked()
     emit transmitdb(database);
     r.exec();
     this->show();
+    this->ui->label_2->clear();
+    this->ui->label_3->clear();
 }
 
+/*
+ * 函数名：on_Login_Btn_clicked
+ * 功能：向服务端发送用户名密码信息，服务端进行验证正确性
+ * 返回值：void
+ */
 void LoginIn::on_Login_Btn_clicked()
 {
     QString name1 = ui->UserName_LineEdit->text()+"/-";
@@ -106,32 +115,6 @@ void LoginIn::on_Login_Btn_clicked()
     qDebug()<<"1";
     tcpSocket->write(name1.toLocal8Bit());
     tcpSocket->flush();
-    //ui->Login_Btn->click();
-//    if(matchFlag == false)
-//    {
-//        //用户名错误
-//        qDebug()<<"name invalid";
-//        ui->label_2->setText("用户名错误");
-//    }
-    //else
-    //{
-
-        /*
-        ui->label_2->setText("");
-        if(usr_passwd!=ui->PWD_LineEdit->text())
-        {
-            //密码错误
-            qDebug()<<"passwd not match";
-            ui->label_3->setText("密码错误");
-        }
-        else
-        {
-            ui->label_3->setText("");
-            //用户名和密码均正确
-            this->close();
-            emit firstpageshow(usr_name);
-        }*/
-    //}
 }
 
 void LoginIn::getUserInfo(QString name)
@@ -161,31 +144,13 @@ void LoginIn::getUserInfo(QString name)
 
 }
 
+/*
+ * 函数名：datareceived
+ * 功能：从服务端接收传回来的数据，用于验证用户名密码的信息是否正确
+ * 返回值：void
+ */
 void LoginIn::datareceived()
 {
-
-//    while(tcpSocket->bytesAvailable() > 0)
-//    {
-//        QByteArray datagram;
-//        datagram.resize(tcpSocket->bytesAvailable());
-//        tcpSocket->read(datagram.data(),datagram.size());
-//        QString msg = datagram.data();
-//        qDebug()<<msg;
-//        ui->label_2->setText("");
-//        if(msg!=ui->PWD_LineEdit->text())
-//        {
-//            //密码错误
-//            qDebug()<<"passwd not match";
-//            ui->label_3->setText("密码错误");
-//        }
-//        else
-//        {
-//            ui->label_3->setText("");
-//            //用户名和密码均正确
-//            this->hide();
-//            emit firstpageshow(usr_name);
-//        }
-//    }
     qDebug()<<"receive function";
     QByteArray buffer;
     buffer = tcpSocket->readAll();

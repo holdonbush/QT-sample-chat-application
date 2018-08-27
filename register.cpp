@@ -34,11 +34,23 @@ QString select_max_sql = "select max(chatid) from user";
 QString insert_sql = "insert into user values (?, ?, ?)";
 QString select_sql = "select name from user";
 
+/*
+ * 函数名： on_Back_Btn_clicked
+ * 功能：返回登陆页面
+ * 返回值：void
+ */
 void Register::on_Back_Btn_clicked()
 {
     this->close();
 }
 
+/*
+ * 函数名：on_Registe_Btn_clicked
+ * 功能：用户注册，并向服务端发送注册信息，服务端将信息储存到数据库，
+ *      本地也会建立一个数据库，仅仅只是存储，验证登陆是从服务端的
+ *      数据库获取信息来验证
+ * 返回值：void
+ */
 void Register::on_Registe_Btn_clicked()
 {
     bool nameFlag = false;

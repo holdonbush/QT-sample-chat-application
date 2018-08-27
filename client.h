@@ -1,3 +1,8 @@
+/*
+ * UDP群聊功能里面的文件发送的客户端头文件
+ * 实现接受文件功能
+ */
+
 #ifndef CLIENT_H
 #define CLIENT_H
 
@@ -22,7 +27,7 @@ public:
     void setFileName(QString name);                   //获取文件保存路径
 
 protected:
-    void closeEvent(QCloseEvent *);
+    void closeEvent(QCloseEvent *);                   //关闭事件
 
 private:
     Ui::Client *ui;

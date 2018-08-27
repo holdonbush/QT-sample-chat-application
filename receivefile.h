@@ -1,3 +1,8 @@
+/*
+ * TCP实现群聊功能里面的文件传输接受方
+ * 扮演一个服务端，监听与发送端相同的端口，实现文件接受
+ */
+
 #ifndef RECEIVEFILE_H
 #define RECEIVEFILE_H
 
