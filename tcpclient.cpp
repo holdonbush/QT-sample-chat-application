@@ -44,6 +44,12 @@ TcpClient::~TcpClient()
     delete ui;
 }
 
+/*
+ * 函数名：slotEnter
+ * 功能：新用户连接
+ * 参数：NULL
+ * 返回值：void
+ */
 void TcpClient::slotEnter()
 {
     if(!status)
@@ -83,7 +89,8 @@ void TcpClient::slotEnter()
 
 /*
  * 函数名：slotConnected
- * 功能：新连接加入
+ * 功能：新用户进入聊天室
+ * 参数：NULL
  * 返回值：void
  */
 void TcpClient::slotConnected()
@@ -101,6 +108,7 @@ void TcpClient::slotConnected()
 /*
  * 函数名：slotSend
  * 功能：发送消息
+ * 参数：NULL
  * 返回值：void
  */
 void TcpClient::slotSend()
@@ -116,12 +124,24 @@ void TcpClient::slotSend()
     ui->textEdit->clear();
 }
 
+/*
+ * 函数名：slotDisconnected
+ * 功能：断开连接
+ * 参数：NULL
+ * 返回值：void
+ */
 void TcpClient::slotDisconnected()
 {
     ui->send_Btn->setEnabled(false);
     ui->join_Btn->setText(tr("进入聊天室"));
 }
 
+/*
+ * 函数名：dataReceived
+ * 功能：接收从服务端传来的数据
+ * 参数：NULL
+ * 返回值：void
+ */
 void TcpClient::dataReceived()
 {
     qDebug()<<"receive";
@@ -147,6 +167,7 @@ void TcpClient::dataReceived()
 /*
  * 函数名：on_fontComboBox_currentFontChanged
  * 功能：改变字体
+ * 参数：QFont
  * 返回值：void
  */
 void TcpClient::on_fontComboBox_currentFontChanged(const QFont &f)
@@ -158,6 +179,7 @@ void TcpClient::on_fontComboBox_currentFontChanged(const QFont &f)
 /*
  * 函数名：on_comboBox_currentIndexChanged
  * 功能：改变字体大小
+ * 参数：QString
  * 返回值：void
  */
 void TcpClient::on_comboBox_currentIndexChanged(const QString &arg1)
@@ -169,6 +191,7 @@ void TcpClient::on_comboBox_currentIndexChanged(const QString &arg1)
 /*
  * 函数名：on_toolButton_clicked
  * 功能：字体加粗
+ * 参数：bool
  * 返回值：void
  */
 void TcpClient::on_toolButton_clicked(bool checked)
@@ -190,6 +213,7 @@ void TcpClient::on_toolButton_clicked(bool checked)
 /*
  * 函数名：on_toolButton_2_clicked
  * 功能：字体倾斜
+ * 参数：bool
  * 返回值：void
  */
 void TcpClient::on_toolButton_2_clicked(bool checked)
@@ -201,6 +225,7 @@ void TcpClient::on_toolButton_2_clicked(bool checked)
 /*
  * 函数名：on_toolButton_3_clicked
  * 功能：字体加下划线
+ * 参数：bool
  * 返回值：void
  */
 void TcpClient::on_toolButton_3_clicked(bool checked)
@@ -212,6 +237,7 @@ void TcpClient::on_toolButton_3_clicked(bool checked)
 /*
  * 函数名：on_toolButton_4_clicked
  * 功能：改变字体颜色
+ * 参数：NULL
  * 返回值：void
  */
 void TcpClient::on_toolButton_4_clicked()
@@ -227,6 +253,7 @@ void TcpClient::on_toolButton_4_clicked()
 /*
  * 函数名：curFmtChanged
  * 功能：适应在输入框中的不同字体
+ * 参数：QTextCharFormat
  * 返回值：void
  */
 void TcpClient::curFmtChanged(const QTextCharFormat &fmt)
@@ -248,6 +275,7 @@ void TcpClient::curFmtChanged(const QTextCharFormat &fmt)
 /*
  * 函数名：on_toolButton_6_clicked
  * 功能：保存聊天记录
+ * 参数：NULL
  * 返回值：void
  */
 void TcpClient::on_toolButton_6_clicked()
@@ -269,6 +297,7 @@ void TcpClient::on_toolButton_6_clicked()
 /*
  * 函数名：saveFile
  * 功能：保存文件
+ * 参数：QString
  * 返回值：void
  */
 bool TcpClient::saveFile(const QString &filename)
@@ -287,6 +316,7 @@ bool TcpClient::saveFile(const QString &filename)
 /*
  * 函数名：on_toolButton_7_clicked
  * 功能：清空聊天记录
+ * 参数：NULL
  * 返回值：void
  */
 void TcpClient::on_toolButton_7_clicked()
@@ -297,6 +327,7 @@ void TcpClient::on_toolButton_7_clicked()
 /*
  * 函数名：on_toolButton_5_clicked
  * 功能：发送文件
+ * 参数：NULL
  * 返回值：void
  */
 void TcpClient::on_toolButton_5_clicked()

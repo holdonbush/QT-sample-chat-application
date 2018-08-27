@@ -12,6 +12,7 @@ Register::Register(QWidget *parent) :
     ui->PWD_LineEdit->setEchoMode(QLineEdit::Password);
     ui->PWDConf_LineEdit->setEchoMode(QLineEdit::Password);
 
+    //建立连接
     status = false;
     port = 8010;
     QString ip = "127.0.0.1";
@@ -29,6 +30,7 @@ Register::~Register()
     delete ui;
 }
 
+//数据库相关操作语句
 QString select_table = "select tbl_name name from sqlite_master where type = 'table'";
 QString create_sql = "create table user (chatid int primary key, passwd varchar(30), name varchar(30))";
 QString select_max_sql = "select max(chatid) from user";
@@ -38,6 +40,7 @@ QString select_sql = "select name from user";
 /*
  * 函数名： on_Back_Btn_clicked
  * 功能：返回登陆页面
+ * 参数：NULL
  * 返回值：void
  */
 void Register::on_Back_Btn_clicked()
@@ -50,6 +53,7 @@ void Register::on_Back_Btn_clicked()
  * 功能：用户注册，并向服务端发送注册信息，服务端将信息储存到数据库，
  *      本地也会建立一个数据库，仅仅只是存储，验证登陆是从服务端的
  *      数据库获取信息来验证
+ * 参数：NULL
  * 返回值：void
  */
 void Register::on_Registe_Btn_clicked()
@@ -59,6 +63,7 @@ void Register::on_Registe_Btn_clicked()
     int newchatid = max_id+1;
     QString newpasswd = NULL;
     QString newname = NULL;
+    //注册时的信息填写验证
     if(ui->PWD_LineEdit->text()==""||ui->PWDConf_LineEdit->text()=="")
     {
         passwdFlag = false;
@@ -156,7 +161,7 @@ void Register::on_Registe_Btn_clicked()
         qDebug()<<"inserted!";    //成功插入
     }
 
-    //tcpSocket->write(&newchatid,sizeof(int));
+    //将用户名与密码发送至服务端，用于保存至服务端的数据库中
     QString str = ui->UserName_LineEdit->text()+"/" + ui->PWD_LineEdit->text();
     tcpSocket->write(str.toLatin1());
     tcpSocket->flush();

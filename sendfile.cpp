@@ -46,6 +46,7 @@ SendFile::~SendFile()
 /*
  * 函数名：on_pushButton_clicked
  * 功能：选择文件
+ * 参数：NULL
  * 返回值：void
  */
 void SendFile::on_pushButton_clicked()
@@ -65,6 +66,7 @@ void SendFile::on_pushButton_clicked()
 /*
  * 函数名：on_pushButton_2_clicked
  * 功能：发送文件
+ * 参数：NULL
  * 返回值：void
  */
 void SendFile::on_pushButton_2_clicked()
@@ -77,7 +79,12 @@ void SendFile::on_pushButton_2_clicked()
 
 }
 
-
+/*
+ * 函数名：start_transfer
+ * 功能：开始传输
+ * 参数：NULL
+ * 返回值：void
+ */
 void SendFile::start_transfer()
 {
     file = new QFile(fileName);
@@ -112,6 +119,12 @@ void SendFile::start_transfer()
 
 }
 
+/*
+ * 函数名：continue_transfer
+ * 功能：继续传输
+ * 参数：qint64
+ * 返回值：void
+ */
 void SendFile::continue_transfer(qint64 sentSize)
 {
     sentBytes += sentSize;
@@ -135,6 +148,12 @@ void SendFile::continue_transfer(qint64 sentSize)
     }
 }
 
+/*
+ * 函数名：show_error
+ * 功能：错误处理
+ * 参数：QAbstractSocket::SocketError
+ * 返回值：void
+ */
 void SendFile::show_error(QAbstractSocket::SocketError)
 {
     qDebug() << "*** Socket Error";

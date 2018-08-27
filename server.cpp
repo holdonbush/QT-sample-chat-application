@@ -25,6 +25,12 @@ Server::~Server()
     delete ui;
 }
 
+/*
+ * 函数名：initSrv
+ * 功能：文件传输服务端初始化
+ * 参数：NULL
+ * 返回值：void
+ */
 void Server::initSrv()
 {
     payloadSize = 64*1014;
@@ -38,6 +44,12 @@ void Server::initSrv()
     tSrv->close();
 }
 
+/*
+ * 函数名：sendMsg
+ * 功能：传输文件
+ * 参数：NULL
+ * 返回值：void
+ */
 void Server::sendMsg()
 {
     ui->sSendBtn->setEnabled(false);

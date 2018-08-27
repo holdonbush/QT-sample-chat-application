@@ -38,6 +38,7 @@ ReceiveFile::~ReceiveFile()
 /*
  * 函数名：on_pushButton_clicked
  * 功能：监听该端口，实现文件接收
+ * 参数：NULL
  * 返回值：void
  */
 void ReceiveFile::on_pushButton_clicked()
@@ -55,6 +56,12 @@ void ReceiveFile::on_pushButton_clicked()
 
 }
 
+/*
+ * 函数名：accept_connect
+ * 功能：建立连接
+ * 参数：NULL
+ * 返回值：void
+ */
 void ReceiveFile::accept_connect()
 {
     receive = server->nextPendingConnection();
@@ -69,6 +76,12 @@ void ReceiveFile::accept_connect()
     server->close();
 }
 
+/*
+ * 函数名：recevie_file()
+ * 功能：接收文件
+ * 参数：NULL
+ * 返回值：void
+ */
 void ReceiveFile::recevie_file()
 {
     QDataStream in(receive);
@@ -133,6 +146,12 @@ void ReceiveFile::recevie_file()
     }
 }
 
+/*
+ * 函数名：show_error
+ * 功能：错误处理
+ * 参数：NULL
+ * 返回值：void
+ */
 void ReceiveFile::show_error(QAbstractSocket::SocketError)
 {
     std::cerr << "*** Socket Error ***" << std::endl;

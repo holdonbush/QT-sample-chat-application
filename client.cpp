@@ -13,6 +13,7 @@ Client::Client(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("接受");
 
+    //建立连接
     totalBytes = 0;
     bytesReceived = 0;
     fileNameSize = 0;
@@ -30,6 +31,7 @@ Client::~Client()
 /*
  * 函数名：diaplayErr
  * 功能：错误处理
+ * 参数：QAbstractSocket::SocketError
  * 返回值：void
  */
 void Client::diaplayErr(QAbstractSocket::SocketError sockErr)
@@ -46,7 +48,8 @@ void Client::diaplayErr(QAbstractSocket::SocketError sockErr)
 
 /*
  * 函数名：newConn
- * 功能：建立新的连接到服务端
+ * 功能：建立新的连接到服务端，连接好之后开始计时
+ * 参数：NULL
  * 返回值：void
  */
 void Client::newConn()
@@ -54,12 +57,13 @@ void Client::newConn()
     blockSize = 0;
     tClnt->abort();
     tClnt->connectToHost(hostAddr,tPort);
-    time.start();
+    time.start();   //计时器启动
 }
 
 /*
  * 函数名：readMsg
  * 功能：接收文件
+ * 参数：NULL
  * 返回值：void
  */
 void Client::readMsg()
@@ -115,6 +119,7 @@ void Client::readMsg()
 /*
  * 函数名：on_cCancleBtn_clicked
  * 功能：取消接受文件
+ * 参数：NULL
  * 返回值：void
  */
 void Client::on_cCancleBtn_clicked()
@@ -129,6 +134,7 @@ void Client::on_cCancleBtn_clicked()
 /*
  * 函数名： on_cCloseBtn_clicked
  * 功能：关闭文件接收客户端
+ * 参数：NULL
  * 返回值：void
  */
 void Client::on_cCloseBtn_clicked()
@@ -142,6 +148,7 @@ void Client::on_cCloseBtn_clicked()
 /*
  * 函数名：closeEvent
  * 功能：窗口关闭按钮的事件，绑定到客户端关闭按钮
+ * 参数：NULL
  * 返回值：void
  */
 void Client::closeEvent(QCloseEvent *)

@@ -7,10 +7,11 @@
 Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     :QToolBox(parent,f)
 {
+    //窗口界面设计
     setWindowTitle("Company IM");
     setWindowIcon(QPixmap(":/img/chat.png"));
 
-    //connect((userInfo*)parent,SIGNAL(changetitle(QString)),this,SLOT(changetitle(QString)));
+    //UI界面初始化
     user_Info_btn = new QPushButton("个人信息");
     backtoLogin = new QPushButton("退出");
 
@@ -91,8 +92,8 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     Layout_1->addWidget(toolBtn7);
 
 
-    this->addItem((QWidget*)groupBox,tr("群成员"));
-    this->addItem((QWidget*)groupBox_1,tr("群"));
+    this->addItem((QWidget*)groupBox,tr("UDP群聊"));
+    this->addItem((QWidget*)groupBox_1,tr("TCP群聊"));
     this->addItem((QPushButton*)user_Info_btn,tr("个人信息"));
     this->addItem((QPushButton*)backtoLogin,tr("退出"));
 
@@ -104,6 +105,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
 /*
  * 函数名：receivesignal
  * 功能：显示这个窗口
+ * 参数：QString
  * 返回值：void
  */
 void Drawer::receivesignal(QString name)
@@ -115,6 +117,7 @@ void Drawer::receivesignal(QString name)
 /*
  * 函数名：showChatWidget1
  * 功能：显示窗口
+ * 参数：NULL
  * 返回值：void
  */
 void Drawer::showChatWidget1()
@@ -128,6 +131,7 @@ void Drawer::showChatWidget1()
 /*
  * 函数名：showChatWidget2
  * 功能：显示窗口
+ * 参数：NULL
  * 返回值：void
  */
 void Drawer::showChatWidget2()
@@ -141,6 +145,7 @@ void Drawer::showChatWidget2()
 /*
  * 函数名：showChatWidget3
  * 功能：显示窗口
+ * 参数：NULL
  * 返回值：void
  */
 void Drawer::showChatWidget3()
@@ -154,6 +159,7 @@ void Drawer::showChatWidget3()
 /*
  * 函数名：showChatWidget4
  * 功能：显示窗口
+ * 参数：NULL
  * 返回值：void
  */
 void Drawer::showChatWidget4()
@@ -167,6 +173,7 @@ void Drawer::showChatWidget4()
 /*
  * 函数名：showChatWidget5
  * 功能：显示窗口
+ * 参数：NULL
  * 返回值：void
  */
 void Drawer::showChatWidget5()
@@ -180,6 +187,7 @@ void Drawer::showChatWidget5()
 /*
  * 函数名：showChatWidget6
  * 功能：显示窗口
+ * 参数：NULL
  * 返回值：void
  */
 void Drawer::showChatWidget6()
@@ -193,6 +201,7 @@ void Drawer::showChatWidget6()
 /*
  * 函数名：userInfoPage
  * 功能：转到用户个人信息界面
+ * 参数：NULL
  * 返回值：void
  */
 void Drawer::userInfoPage()
@@ -207,6 +216,7 @@ void Drawer::userInfoPage()
 /*
  * 函数名：groupPage
  * 功能：转到TCP群聊界面
+ * 参数：NULL
  * 返回值：void
  */
 void Drawer::groupPage()
@@ -219,6 +229,7 @@ void Drawer::groupPage()
 /*
  * 函数名：LoginOut
  * 功能：退出，转到登陆界面
+ * 参数：NULL
  * 返回值：void
  */
 void Drawer::LoginOut()
@@ -230,6 +241,7 @@ void Drawer::LoginOut()
 /*
  * 函数名：changetitle
  * 功能：改变窗口标题
+ * 参数：QString
  * 返回值：void
  */
 void Drawer::changetitle(QString s)

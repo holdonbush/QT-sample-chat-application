@@ -18,6 +18,7 @@ LoginIn::LoginIn(QWidget *parent) :
     ui->label_3->clear();
     setWindowIcon(QPixmap(":/img/log-in.png"));
 
+    //建立套接字连接
     status = false;
     port = 8010;
     QString ip = "127.0.0.1";
@@ -25,6 +26,7 @@ LoginIn::LoginIn(QWidget *parent) :
     serverIP->setAddress(ip);
     tcpSocket = new QTcpSocket(this);
     tcpSocket->connectToHost(*serverIP,port);
+
     connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(datareceived()));
     connect(ui->UserName_LineEdit,SIGNAL(textChanged(QString)),this,SLOT(getUserInfo(QString)));
     tableFlag = false;
@@ -43,7 +45,7 @@ LoginIn::LoginIn(QWidget *parent) :
         qDebug()<<"open seccess";
         QSqlQuery sql_query;        //改变量必须在成功打开数据库后定义才有效
         sql_query.prepare(select_table);
-        if(!sql_query.exec())
+        if(!sql_query.exec()) //出错
         {
             qDebug()<<sql_query.lastError();
         }
@@ -103,6 +105,7 @@ void LoginIn::on_Registe_Btn_clicked()
 /*
  * 函数名：on_Login_Btn_clicked
  * 功能：向服务端发送用户名密码信息，服务端进行验证正确性
+ * 参数：NULL
  * 返回值：void
  */
 void LoginIn::on_Login_Btn_clicked()
@@ -113,10 +116,17 @@ void LoginIn::on_Login_Btn_clicked()
 
 
     qDebug()<<"1";
+    //将用户名发送到服务端用于验证
     tcpSocket->write(name1.toLocal8Bit());
     tcpSocket->flush();
 }
 
+/*
+ * 函数名：getUserInfo
+ * 功能：获取用户信息，实际上此函数用处不大，因为用户信息会从服务端获取
+ * 参数：QString
+ * 返回值：void
+ */
 void LoginIn::getUserInfo(QString name)
 {
     QSqlQuery sql_query;
@@ -147,19 +157,23 @@ void LoginIn::getUserInfo(QString name)
 /*
  * 函数名：datareceived
  * 功能：从服务端接收传回来的数据，用于验证用户名密码的信息是否正确
+ * 参数：NULL
  * 返回值：void
  */
 void LoginIn::datareceived()
 {
     qDebug()<<"receive function";
+    //接收从服务端发送的数据
     QByteArray buffer;
     buffer = tcpSocket->readAll();
     QString str = QString::fromLocal8Bit(buffer);
     qDebug()<<str;
     ui->label_2->clear();
     ui->label_3->clear();
+    //接收服务端发送回来的数据，验证密码正确性
     if(str != "***")
     {
+        //密码错误情况
         if(str!=ui->PWD_LineEdit->text())
         {
             qDebug()<<"passwd not match";
@@ -169,11 +183,14 @@ void LoginIn::datareceived()
         }
         else
         {
+            //密码正确
             ui->label_3->clear();
             this->close();
+            //发送显示主界面的信号
             emit firstpageshow(ui->UserName_LineEdit->text());
         }
     }
+    //用户名错误的情况
     else if(str.contains("*")) {
         //ui->label_2->setText("用户名错误");
         QMessageBox::warning(this,tr("ERROR"),tr("用户名错误"));

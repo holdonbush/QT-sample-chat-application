@@ -39,6 +39,7 @@ Widget::~Widget()
 /*
  * 函数名：sendMsg
  * 功能：发送消息
+ * 参数：MsgType,QString
  * 返回值：void
  */
 void Widget::sendMsg(MsgType type, QString srvaddr)
@@ -83,6 +84,7 @@ void Widget::sendMsg(MsgType type, QString srvaddr)
 /*
  * 函数名：processPendingDatagram
  * 功能：UDP群聊功能中接收UDP信息
+ * 参数：NULL
  * 返回值：void
  */
 void Widget::processPendingDatagram()
@@ -142,6 +144,7 @@ void Widget::processPendingDatagram()
 /*
  * 函数名：usrEnter
  * 功能：新用户上线
+ * 参数：QString,QString
  * 返回值：void
  */
 void Widget::usrEnter(QString usrname, QString ipaddr)
@@ -165,6 +168,7 @@ void Widget::usrEnter(QString usrname, QString ipaddr)
 /*
  * 函数名：usrLeft
  * 功能：用户离开
+ * 参数：QString,QString
  * 返回值：void
  */
 void Widget::usrLeft(QString usrname, QString time)
@@ -180,6 +184,7 @@ void Widget::usrLeft(QString usrname, QString time)
 /*
  * 函数名：getIP
  * 功能：获取IP地址
+ * 参数：NULL
  * 返回值：QString
  */
 QString Widget::getIP()
@@ -195,6 +200,7 @@ QString Widget::getIP()
 /*
  * 函数名：getUsr
  * 功能：获取用户名
+ * 参数：NULL
  * 返回值：QString
  */
 QString Widget::getUsr()
@@ -205,6 +211,7 @@ QString Widget::getUsr()
 /*
  * 函数名：getMsg
  * 功能：获取用户发送的消息
+ * 参数：NULL
  * 返回值：QString
  */
 QString Widget::getMsg()
@@ -218,6 +225,7 @@ QString Widget::getMsg()
 /*
  * 函数名：on_sendBtn_clicked
  * 功能：发送消息
+ * 参数：NULL
  * 返回值：void
  */
 void Widget::on_sendBtn_clicked()
@@ -228,6 +236,7 @@ void Widget::on_sendBtn_clicked()
 /*
  * 函数名：on_exitBtn_clicked
  * 功能：离开
+ * 参数：NULL
  * 返回值：void
  */
 void Widget::on_exitBtn_clicked()
@@ -245,6 +254,7 @@ void Widget::getFileName(QString name)
 /*
  * 函数名：on_sendTBtn_clicked
  * 功能：发送文件
+ * 参数：NULL
  * 返回值：void
  */
 void Widget::on_sendTBtn_clicked()
@@ -260,7 +270,8 @@ void Widget::on_sendTBtn_clicked()
 
 /*
  * 函数名：hasPendingFile
- * 功能：判断是否要接收文件
+ * 功能：判断是否要接收文件,确认接收后，打开接收文件客户端
+ * 参数：NULL
  * 返回值：void
  */
 void Widget::hasPendingFile(QString usrname, QString srvaddr, QString clntaddr, QString filename)
@@ -299,6 +310,7 @@ void Client::setHostAddr(QHostAddress addr)
 /*
  * 函数名：on_fontCbx_currentFontChanged
  * 功能：改变字体
+ * 参数：QFont
  * 返回值：void
  */
 void Widget::on_fontCbx_currentFontChanged(const QFont &f)
@@ -310,6 +322,7 @@ void Widget::on_fontCbx_currentFontChanged(const QFont &f)
 /*
  * 函数名：on_comboBox_currentIndexChanged
  * 功能：改变字体大小
+ * 参数：QString
  * 返回值：void
  */
 void Widget::on_comboBox_currentIndexChanged(const QString &arg1)
@@ -321,6 +334,7 @@ void Widget::on_comboBox_currentIndexChanged(const QString &arg1)
 /*
  * 函数名：on_boldTBtn_clicked
  * 功能：字体加粗
+ * 参数：bool
  * 返回值：void
  */
 void Widget::on_boldTBtn_clicked(bool checked)
@@ -342,6 +356,7 @@ void Widget::on_boldTBtn_clicked(bool checked)
 /*
  * 函数名：on_italicTBtn_clicked
  * 功能：字体倾斜
+ * 参数：bool
  * 返回值：void
  */
 void Widget::on_italicTBtn_clicked(bool checked)
@@ -353,6 +368,7 @@ void Widget::on_italicTBtn_clicked(bool checked)
 /*
  * 函数名：on_underlineTBtn_clicked
  * 功能：字体添加下划线
+ * 参数：bool
  * 返回值：void
  */
 void Widget::on_underlineTBtn_clicked(bool checked)
@@ -364,6 +380,7 @@ void Widget::on_underlineTBtn_clicked(bool checked)
 /*
  * 函数名：on_colorTBtn_clicked
  * 功能：改变字体颜色
+ * 参数：NULL
  * 返回值：void
  */
 void Widget::on_colorTBtn_clicked()
@@ -379,6 +396,7 @@ void Widget::on_colorTBtn_clicked()
 /*
  * 函数名：curFmtChange
  * 功能：适应内容输入框中不同位置的不同字体
+ * 参数：QTextCharFormat
  * 返回值：void
  */
 void Widget::curFmtChange(const QTextCharFormat &fmt)
@@ -402,6 +420,7 @@ void Widget::curFmtChange(const QTextCharFormat &fmt)
 /*
  * 函数名：on_saveTBtn_clicked
  * 功能：保存聊天记录
+ * 参数：NULL
  * 返回值：void
  */
 void Widget::on_saveTBtn_clicked()
@@ -435,6 +454,7 @@ bool Widget::saveFile(const QString &filename)
 /*
  * 函数名：on_clearTBtn_clicked
  * 功能：清空聊天记录
+ * 参数：NULL
  * 返回值：void
  */
 void Widget::on_clearTBtn_clicked()
