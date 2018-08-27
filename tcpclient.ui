@@ -16,7 +16,7 @@
   <widget class="QPushButton" name="send_Btn">
    <property name="geometry">
     <rect>
-     <x>520</x>
+     <x>550</x>
      <y>420</y>
      <width>101</width>
      <height>31</height>
@@ -68,7 +68,7 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>250</x>
      <y>470</y>
      <width>181</width>
      <height>23</height>
@@ -94,7 +94,7 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>460</x>
      <y>470</y>
      <width>191</width>
      <height>23</height>
@@ -218,7 +218,7 @@
   <widget class="QToolButton" name="toolButton">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>320</x>
      <y>330</y>
      <width>32</width>
      <height>32</height>
@@ -241,7 +241,7 @@
   <widget class="QToolButton" name="toolButton_2">
    <property name="geometry">
     <rect>
-     <x>350</x>
+     <x>370</x>
      <y>330</y>
      <width>32</width>
      <height>32</height>
@@ -264,7 +264,7 @@
   <widget class="QToolButton" name="toolButton_3">
    <property name="geometry">
     <rect>
-     <x>390</x>
+     <x>420</x>
      <y>330</y>
      <width>32</width>
      <height>32</height>
@@ -287,7 +287,7 @@
   <widget class="QToolButton" name="toolButton_4">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>470</x>
      <y>330</y>
      <width>32</width>
      <height>32</height>
@@ -307,7 +307,7 @@
   <widget class="QToolButton" name="toolButton_5">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>520</x>
      <y>330</y>
      <width>32</width>
      <height>32</height>
@@ -327,7 +327,7 @@
   <widget class="QToolButton" name="toolButton_6">
    <property name="geometry">
     <rect>
-     <x>510</x>
+     <x>570</x>
      <y>330</y>
      <width>32</width>
      <height>32</height>
@@ -347,7 +347,7 @@
   <widget class="QToolButton" name="toolButton_7">
    <property name="geometry">
     <rect>
-     <x>590</x>
+     <x>620</x>
      <y>330</y>
      <width>32</width>
      <height>32</height>
@@ -369,7 +369,7 @@
     <rect>
      <x>10</x>
      <y>380</y>
-     <width>501</width>
+     <width>531</width>
      <height>71</height>
     </rect>
    </property>
@@ -379,7 +379,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>611</width>
+     <width>641</width>
      <height>311</height>
     </rect>
    </property>
@@ -448,23 +448,6 @@
      <string>user5</string>
     </property>
    </item>
-  </widget>
-  <widget class="QToolButton" name="toolButton_8">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>330</y>
-     <width>32</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="icon">
-    <iconset>
-     <normaloff>img/receive.png</normaloff>img/receive.png</iconset>
-   </property>
   </widget>
  </widget>
  <resources/>

@@ -16,7 +16,7 @@ TcpClient::TcpClient(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("群聊");
-    userName = windowTitle();
+    userName = parent->windowTitle();
 
     status = false;
     port = 8010;
@@ -37,7 +37,6 @@ TcpClient::TcpClient(QWidget *parent) :
     ui->toolButton_5->setIcon(QPixmap(":/img/send.png"));
     ui->toolButton_6->setIcon(QPixmap(":/img/save.png"));
     ui->toolButton_7->setIcon(QPixmap(":/img/clear.png"));
-    ui->toolButton_8->setIcon(QPixmap(":/img/receive.png"));
 }
 
 TcpClient::~TcpClient()
@@ -129,7 +128,20 @@ void TcpClient::dataReceived()
     QByteArray byte = tcpSocket->readAll();
     QString str = QString::fromLocal8Bit(byte);
     //ui->listWidget->addItem(str.left(str.size()));
-    ui->textBrowser->append(str);
+    if(str == userName)
+    {
+        QMessageBox::StandardButton ok;
+        ok = QMessageBox::information(this,tr("information"),tr("是否接收文件"),QMessageBox::Yes,QMessageBox::No);
+        if(ok == QMessageBox::Yes)
+        {
+            ReceiveFile *t = new ReceiveFile(this);
+            t->show();
+        }
+    }
+    else
+    {
+        ui->textBrowser->append(str);
+    }
 }
 
 /*
@@ -293,6 +305,19 @@ void TcpClient::on_toolButton_5_clicked()
     {
         QMessageBox::warning(this,tr("警告"),tr("请选择对象"),QMessageBox::Ok);
         return;
+    } 
+    QList<QTableWidgetItem*> items = ui->tableWidget->selectedItems();
+    int count = items.count();
+    for(int i = 0; i < count; i++)
+    {
+        int row = ui->tableWidget->row(items.at(i));
+        QTableWidgetItem *item = items.at(i);
+        QString name = item->text(); //获取内容
+        qDebug()<<name;
+        QString str = "file+" + name;
+        qDebug()<<str;
+        tcpSocket->write(str.toLocal8Bit());
+        tcpSocket->flush();
     }
     SendFile *s = new SendFile(this);
     s->show();
