@@ -6,6 +6,8 @@
 #include <QFont>
 #include <QFile>
 #include <QFileDialog>
+#include "sendfile.h"
+#include "receivefile.h"
 
 
 TcpClient::TcpClient(QWidget *parent) :
@@ -228,4 +230,14 @@ bool TcpClient::saveFile(const QString &filename)
 void TcpClient::on_toolButton_7_clicked()
 {
     ui->textBrowser->clear();
+}
+
+void TcpClient::on_toolButton_5_clicked()
+{
+    SendFile *s = new SendFile(this);
+    TcpClient *t = new TcpClient(this);
+    t->show();
+    ReceiveFile *r = new ReceiveFile(t);
+    r->show();
+    s->show();
 }

@@ -44,6 +44,8 @@ private slots:
 
     void on_toolButton_7_clicked();
 
+    void on_toolButton_5_clicked();
+
 protected:
     bool saveFile(const QString &filename);
 

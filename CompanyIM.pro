@@ -32,7 +32,9 @@ SOURCES += \
     userinfo.cpp \
     tcpclient.cpp \
     server.cpp \
-    client.cpp
+    client.cpp \
+    sendfile.cpp \
+    receivefile.cpp
 
 HEADERS += \
         loginin.h \
@@ -42,7 +44,9 @@ HEADERS += \
     userinfo.h \
     tcpclient.h \
     server.h \
-    client.h
+    client.h \
+    sendfile.h \
+    receivefile.h
 
 FORMS += \
         loginin.ui \
@@ -51,7 +55,9 @@ FORMS += \
     userinfo.ui \
     tcpclient.ui \
     server.ui \
-    client.ui
+    client.ui \
+    sendfile.ui \
+    receivefile.ui
 
 RESOURCES += \
     companyimsource.qrc

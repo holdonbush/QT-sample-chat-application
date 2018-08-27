@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>675</width>
+    <width>855</width>
     <height>545</height>
    </rect>
   </property>
@@ -125,7 +125,7 @@
     </rect>
    </property>
    <property name="currentText">
-    <string>12</string>
+    <string>8</string>
    </property>
    <item>
     <property name="text">
@@ -371,6 +371,71 @@
      <height>311</height>
     </rect>
    </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>680</x>
+     <y>10</y>
+     <width>141</width>
+     <height>441</height>
+    </rect>
+   </property>
+   <row>
+    <property name="text">
+     <string>1</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>2</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>3</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>4</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>5</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>好友列表</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>user1</string>
+    </property>
+   </item>
+   <item row="1" column="0">
+    <property name="text">
+     <string>user2</string>
+    </property>
+   </item>
+   <item row="2" column="0">
+    <property name="text">
+     <string>user3</string>
+    </property>
+   </item>
+   <item row="3" column="0">
+    <property name="text">
+     <string>user4</string>
+    </property>
+   </item>
+   <item row="4" column="0">
+    <property name="text">
+     <string>user5</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>
