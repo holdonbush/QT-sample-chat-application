@@ -37,6 +37,7 @@ TcpClient::TcpClient(QWidget *parent) :
     ui->toolButton_5->setIcon(QPixmap(":/img/send.png"));
     ui->toolButton_6->setIcon(QPixmap(":/img/save.png"));
     ui->toolButton_7->setIcon(QPixmap(":/img/clear.png"));
+    ui->toolButton_8->setIcon(QPixmap(":/img/receive.png"));
 }
 
 TcpClient::~TcpClient()
@@ -288,10 +289,17 @@ void TcpClient::on_toolButton_7_clicked()
  */
 void TcpClient::on_toolButton_5_clicked()
 {
+    if(ui->tableWidget->selectedItems().isEmpty())
+    {
+        QMessageBox::warning(this,tr("警告"),tr("请选择对象"),QMessageBox::Ok);
+        return;
+    }
     SendFile *s = new SendFile(this);
-    TcpClient *t = new TcpClient(this);
-    t->show();
-    ReceiveFile *r = new ReceiveFile(t);
-    r->show();
     s->show();
+}
+
+void TcpClient::on_toolButton_8_clicked()
+{
+    ReceiveFile *r = new ReceiveFile(this);
+    r->show();
 }

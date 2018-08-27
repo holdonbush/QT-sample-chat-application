@@ -9,5 +9,9 @@
         <file>img/send.png</file>
         <file>img/color.png</file>
         <file>img/underline.png</file>
+        <file>img/log-in.png</file>
+        <file>img/register.png</file>
+        <file>img/receive.png</file>
+        <file>img/chat.png</file>
     </qresource>
 </RCC>

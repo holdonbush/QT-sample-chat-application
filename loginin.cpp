@@ -16,6 +16,7 @@ LoginIn::LoginIn(QWidget *parent) :
     ui->PWD_LineEdit->setEchoMode(QLineEdit::Password);
     ui->label_2->clear();
     ui->label_3->clear();
+    setWindowIcon(QPixmap(":/img/log-in.png"));
 
     status = false;
     port = 8010;
@@ -25,7 +26,6 @@ LoginIn::LoginIn(QWidget *parent) :
     tcpSocket = new QTcpSocket(this);
     tcpSocket->connectToHost(*serverIP,port);
     connect(tcpSocket,SIGNAL(readyRead()),this,SLOT(datareceived()));
-
     connect(ui->UserName_LineEdit,SIGNAL(textChanged(QString)),this,SLOT(getUserInfo(QString)));
     tableFlag = false;
 

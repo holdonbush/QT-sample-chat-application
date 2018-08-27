@@ -8,7 +8,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     :QToolBox(parent,f)
 {
     setWindowTitle("Company IM");
-    setWindowIcon(QPixmap(":/img/cat.png"));
+    setWindowIcon(QPixmap(":/img/chat.png"));
 
     //connect((userInfo*)parent,SIGNAL(changetitle(QString)),this,SLOT(changetitle(QString)));
     user_Info_btn = new QPushButton("个人信息");

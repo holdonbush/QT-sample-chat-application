@@ -8,6 +8,7 @@ Register::Register(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("注册");
+    setWindowIcon(QPixmap(":/img/register.png"));
     ui->PWD_LineEdit->setEchoMode(QLineEdit::Password);
     ui->PWDConf_LineEdit->setEchoMode(QLineEdit::Password);
 

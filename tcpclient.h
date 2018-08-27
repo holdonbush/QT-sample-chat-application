@@ -50,6 +50,8 @@ private slots:
 
     void on_toolButton_5_clicked();              //发送文件
 
+    void on_toolButton_8_clicked();
+
 protected:
     bool saveFile(const QString &filename);
 
