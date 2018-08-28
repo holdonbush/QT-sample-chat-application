@@ -119,7 +119,7 @@ void TcpClient::slotSend()
     }
     QString str = windowTitle();
     QString msg = userName + ":" + "+" + ui->textEdit->toPlainText();
-    ui->textBrowser->append(userName+":");
+    //ui->textBrowser->append(userName+":");
     tcpSocket->write(msg.toLocal8Bit());
     ui->textEdit->clear();
 }
