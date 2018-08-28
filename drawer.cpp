@@ -16,7 +16,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     backtoLogin = new QPushButton("退出");
 
     toolBtn1 = new QToolButton;
-    toolBtn1->setText("1");
+    toolBtn1->setText("user1");
     toolBtn1->setIcon(QPixmap(":/img/cat.png"));
     toolBtn1->setIconSize(QPixmap(":/img/cat.png").size());
     toolBtn1->setAutoRaise(true);
@@ -24,7 +24,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(toolBtn1,SIGNAL(clicked(bool)),this,SLOT(showChatWidget1()));
 
     toolBtn2 = new QToolButton;
-    toolBtn2->setText("2");
+    toolBtn2->setText("user2");
     toolBtn2->setIcon(QPixmap(":/img/cat.png"));
     toolBtn2->setIconSize(QPixmap(":/img/cat.png").size());
     toolBtn2->setAutoRaise(true);
@@ -32,7 +32,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(toolBtn2,SIGNAL(clicked(bool)),this,SLOT(showChatWidget2()));
 
     toolBtn3 = new QToolButton;
-    toolBtn3->setText("3");
+    toolBtn3->setText("user3");
     toolBtn3->setIcon(QPixmap(":/img/cat.png"));
     toolBtn3->setIconSize(QPixmap(":/img/cat.png").size());
     toolBtn3->setAutoRaise(true);
@@ -40,7 +40,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(toolBtn3,SIGNAL(clicked(bool)),this,SLOT(showChatWidget3()));
 
     toolBtn4 = new QToolButton;
-    toolBtn4->setText("4");
+    toolBtn4->setText("user4");
     toolBtn4->setIcon(QPixmap(":/img/cat.png"));
     toolBtn4->setIconSize(QPixmap(":/img/cat.png").size());
     toolBtn4->setAutoRaise(true);
@@ -48,7 +48,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(toolBtn4,SIGNAL(clicked(bool)),this,SLOT(showChatWidget4()));
 
     toolBtn5 = new QToolButton;
-    toolBtn5->setText("5");
+    toolBtn5->setText("user5");
     toolBtn5->setIcon(QPixmap(":/img/cat.png"));
     toolBtn5->setIconSize(QPixmap(":/img/cat.png").size());
     toolBtn5->setAutoRaise(true);
@@ -56,7 +56,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(toolBtn5,SIGNAL(clicked(bool)),this,SLOT(showChatWidget5()));
 
     toolBtn6 = new QToolButton;
-    toolBtn6->setText("6");
+    toolBtn6->setText("user6");
     toolBtn6->setIcon(QPixmap(":/img/cat.png"));
     toolBtn6->setIconSize(QPixmap(":/img/cat.png").size());
     toolBtn6->setAutoRaise(true);
